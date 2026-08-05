@@ -3,161 +3,307 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kilimo Mkononi (AgriPocket) - Prototype Imara</title>
-    <!-- Tunatumia Tailwind CSS kwa muonekano wa kisasa na wa haraka -->
+    <title>Kilimo Mkononi (AgriPocket) - Interactive Prototype</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts kwa ajili ya herufi nzuri -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-        }
-        .app-card {
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-        .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-        }
+        body { font-family: 'Inter', sans-serif; }
+        .modal { transition: opacity 0.25s ease; }
+        body.modal-active { overflow-x: hidden; overflow-y: hidden; }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-900">
 
-    <!-- Header / Navigasi -->
-    <header class="bg-white shadow-sm sticky top-0 z-50 border-b border-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-100">
         <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
             <div class="flex items-center gap-2">
-                <!-- Icon ya Kilimo -->
                 <span class="text-3xl">🌾</span>
                 <h1 class="text-2xl font-extrabold text-green-700">Kilimo<span class="text-gray-900">Mkononi</span></h1>
-                <span class="text-sm font-medium text-gray-500">(AgriPocket)</span>
+                <span class="text-xs font-semibold bg-green-100 text-green-800 px-2.5 py-1 rounded-full">v2.0 Live Demo</span>
             </div>
-            <div class="flex items-center gap-4">
-                <span class="bg-green-100 text-green-800 text-xs px-4 py-1.5 rounded-full font-bold">Prototype Imara</span>
-                <div class="w-10 h-10 rounded-full bg-gray-200 flex items-center justify-center font-bold text-gray-600">J</div> <!-- Icon ya Mkulima -->
+            <div class="flex items-center gap-3">
+                <span class="text-sm font-medium text-gray-600 hidden sm:inline">Mkulima: <strong>Amosi Sanga</strong></span>
+                <div class="w-9 h-9 rounded-full bg-green-600 text-white flex items-center justify-center font-bold">A</div>
             </div>
         </nav>
     </header>
 
-    <!-- Sehemu Kuu ya Karibu -->
-    <main class="container mx-auto px-4 py-10 md:py-16">
+    <!-- Hero Section -->
+    <main class="container mx-auto px-4 py-8">
         
-        <div class="max-w-3xl mx-auto text-center mb-16">
-            <h2 class="text-4xl md:text-5xl font-extrabold text-gray-950 leading-tight mb-6">
-                Mapinduzi ya Kilimo kwa <span class="text-green-600">Teknolojia ya AI</span>
+        <div class="max-w-3xl mx-auto text-center mb-10">
+            <h2 class="text-3xl md:text-4xl font-extrabold text-gray-900 mb-3">
+                Mfumo wa Kujaribu <span class="text-green-600">(Interactive Prototype)</span>
             </h2>
-            <p class="text-lg md:text-xl text-gray-700 leading-relaxed">
-                Huu ni mfano unaofanya kazi (MVP) unaowaunganisha wakulima na suluhisho za kidijitali za kimataifa kwa ajili ya usimamizi bora, masoko, na mafanikio ya fedha.
+            <p class="text-gray-600 text-sm md:text-base">
+                Bonyeza huduma yoyote hapa chini kuingia ndani ya mfumo na kujaribu vipengele vyake halisi.
             </p>
         </div>
 
-        <!-- Sehemu ya 'Apps' na Vipengele (The Grid) -->
-        <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <!-- Grid Cards -->
+        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <!-- Kipengele 1: Soko la Mazao (Kuuza/Kununua) -->
-            <div class="bg-white p-8 rounded-3xl border border-gray-100 app-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-5xl">🛍️</span>
-                    <h3 class="text-2xl font-bold text-gray-950">Soko la Mazao</h3>
-                </div>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Uza mazao yako moja kwa moja kwa wanunuzi na kagua bei bora za masoko nchini na kimataifa.
-                </p>
-                <div class="flex flex-col gap-3">
-                    <button onclick="alert('Katalogi ya mazao inapakia... Hapa utaona orodha ya mazao yanayouzwa na wanunuzi.')" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-green-700 transition">Kagua Mazao</button>
-                    <button onclick="alert('Fomu ya kuuza inafunguliwa... Pakia taarifa za mazao yako na bei.')" class="w-full bg-white text-green-700 font-semibold py-3 px-6 rounded-xl border-2 border-green-200 hover:bg-green-50 transition">Uza Mazao</button>
-                </div>
-            </div>
-
-            <!-- Kipengele 2: Duka la Pembejeo (Mbolea & Vifaa) -->
-            <div class="bg-white p-8 rounded-3xl border border-gray-100 app-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-5xl">🚜</span>
-                    <h3 class="text-2xl font-bold text-gray-950">Duka la Pembejeo</h3>
-                </div>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Nunua mbolea, mbegu bora, na vifaa vyote vya kilimo kutoka kwa wasambazaji walioidhinishwa kwa bei nafuu.
-                </p>
-                <button onclick="alert('Duka la mbolea linajifungua... Angalia DAP, UREA, na NPK.')" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-green-700 transition">Nunua Mbolea & Mbegu</button>
-                <button onclick="alert('Vifaa vikuu vinapakia... Matrekta, jembe za mkono, na mifumo ya umwagiliaji.')" class="w-full mt-3 bg-white text-green-700 font-semibold py-3 px-6 rounded-xl border-2 border-green-200 hover:bg-green-50 transition">Kagua Vifaa</button>
-            </div>
-
-            <!-- Kipengele 3: Msaidizi wa AI (AI Assistant) -->
-            <div class="bg-white p-8 rounded-3xl border-l-4 border-l-blue-500 shadow-lg app-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-5xl">🤖</span>
-                    <h3 class="text-2xl font-bold text-gray-950">Msaidizi wa AI</h3>
-                </div>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Uliza swali lolote la kilimo, kagua magonjwa ya mimea, na upate ushauri wa kitaalamu mara moja.
-                </p>
-                <div class="bg-blue-50 p-4 rounded-xl mb-6 text-sm text-blue-900">
-                    <p class="font-bold mb-1">Mkulima Juma:</p>
-                    <p class="italic">"Mimea yangu ya nyanya ina madoa meusi, nifanyeje?"</p>
-                    <hr class="my-3 border-blue-100">
-                    <p class="font-bold mb-1">AgriPocket AI:</p>
-                    <p>Hiyo inaonekana kama 'Early Blight'. Tumia dawa ya fangasi yenye 'Mancozeb' na uhakikishe mzunguko wa hewa ni mzuri.</p>
-                </div>
-                <button onclick="alert('Dirisha la AI linajifungua... Anza kuzungumza na msaidizi wetu.')" class="w-full bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-blue-700 transition">Zungumza na AI</button>
-            </div>
-
-            <!-- Kipengele 4: Utabiri wa Fedha (Hali ya Hela) -->
-            <div class="bg-white p-8 rounded-3xl border border-gray-100 app-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-5xl">📈</span>
-                    <h3 class="text-2xl font-bold text-gray-950">Utabiri wa Fedha</h3>
-                </div>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Panga bajeti yako, changanua faida inayotarajiwa, na kagua hali yako ya fedha kwa msimu ujao.
-                </p>
-                <div class="bg-yellow-50 p-4 rounded-xl mb-6 text-sm text-yellow-900">
-                    <div class="flex justify-between items-center">
-                        <span class="font-bold">Makadirio ya Faida (Ekari 1 ya Nyanya):</span>
-                        <span class="text-lg font-bold text-green-700">TSH 2,500,000+</span>
+            <!-- 1. Soko la Mazao -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">🛍️</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900">Soko la Mazao</h3>
+                        <p class="text-xs text-gray-500">Kununua & Kuuza Mazao</p>
                     </div>
                 </div>
-                <button onclick="alert('Moduli ya fedha inapakia... Ingiza gharama zako na makadirio ya mavuno.')" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-green-700 transition">Kagua Faida</button>
-                <button onclick="alert('Kalenda ya msimu inafunguliwa... Panga matumizi yako kwa kila mwezi.')" class="w-full mt-3 bg-white text-green-700 font-semibold py-3 px-6 rounded-xl border-2 border-green-200 hover:bg-green-50 transition">Panga Bajeti</button>
+                <p class="text-gray-600 text-sm mb-6">Tazama masoko ya kikanda au weka tangazo la kuuza mazao yako moja kwa moja.</p>
+                <div class="flex gap-2">
+                    <button onclick="openModal('modal-soko')" class="flex-1 bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Kagua Masoko</button>
+                    <button onclick="openModal('modal-uza')" class="flex-1 bg-green-50 text-green-700 border border-green-200 font-semibold py-2.5 rounded-xl hover:bg-green-100 text-sm transition">Uza Zao</button>
+                </div>
             </div>
 
-             <!-- Kipengele 5: Elimu na Mafunzo -->
-            <div class="bg-white p-8 rounded-3xl border border-gray-100 app-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-5xl">📖</span>
-                    <h3 class="text-2xl font-bold text-gray-950">Elimu ya Kilimo</h3>
+            <!-- 2. Duka la Pembejeo -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">🚜</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900">Duka la Pembejeo</h3>
+                        <p class="text-xs text-gray-500">Mbolea, Mbegu & Vifaa</p>
+                    </div>
                 </div>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Jifunze mbinu bora za kilimo kupitia makala, video, na kozi fupi kutoka kwa wataalamu wetu.
-                </p>
-                <button onclick="alert('Katalogi ya mafunzo inajifungua... Jifunze kuhusu kilimo cha umwagiliaji.')" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-green-700 transition">Jifunze Sasa</button>
+                <p class="text-gray-600 text-sm mb-6">Agiza mbolea iliyoidhinishwa na zana za kilimo uletewe mpaka shambani.</p>
+                <button onclick="openModal('modal-duka')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Fungua Duka</button>
             </div>
 
-            <!-- Kipengele 6: Usimamizi wa Shamba (Hali ya Udongo & Ratiba) -->
-            <div class="bg-white p-8 rounded-3xl border border-gray-100 app-card">
-                <div class="flex items-center gap-4 mb-6">
-                    <span class="text-5xl">📋</span>
-                    <h3 class="text-2xl font-bold text-gray-950">Usimamizi wa Shamba</h3>
+            <!-- 3. Msaidizi wa AI -->
+            <div class="bg-white p-6 rounded-2xl border-2 border-blue-500 shadow-sm hover:shadow-md transition relative">
+                <span class="absolute -top-3 right-4 bg-blue-600 text-white text-xs px-2.5 py-0.5 rounded-full font-bold">AI Powered</span>
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">🤖</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900">Msaidizi wa AI</h3>
+                        <p class="text-xs text-gray-500">Ushauri wa Papo kwa Papo</p>
+                    </div>
                 </div>
-                <p class="text-gray-600 mb-8 leading-relaxed">
-                    Panga ratiba zako za upandaji, umwagiliaji, na uvunaji, na fika taarifa za udongo wako.
-                </p>
-                <div class="flex flex-col gap-3">
-                    <button onclick="alert('Kagua udongo... Taarifa za hivi karibuni: pH 6.2, Virutubisho vya wastani.')" class="w-full bg-green-600 text-white font-semibold py-3 px-6 rounded-xl hover:bg-green-700 transition">Kagua Udongo</button>
-                    <button onclick="alert('Ratiba ya shamba inajifungua... Hamisha miche ya pilipili siku ya 30.')" class="w-full bg-white text-green-700 font-semibold py-3 px-6 rounded-xl border-2 border-green-200 hover:bg-green-50 transition">Angalia Ratiba</button>
+                <p class="text-gray-600 text-sm mb-6">Uliza maswali kuhusu magonjwa ya mimea, udongo, na ushauri wa kitaalamu.</p>
+                <button onclick="openModal('modal-ai')" class="w-full bg-blue-600 text-white font-semibold py-2.5 rounded-xl hover:bg-blue-700 text-sm transition">Anza Chat na AI</button>
+            </div>
+
+            <!-- 4. Utabiri wa Fedha -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">📈</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900">Utabiri wa Fedha</h3>
+                        <p class="text-xs text-gray-500">Kikokotoo cha Faida</p>
+                    </div>
                 </div>
+                <p class="text-gray-600 text-sm mb-6">Piga hesabu ya makadirio ya gharama na faida kabla ya kuanza msimu.</p>
+                <button onclick="openModal('modal-fedha')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Kikokotoo cha Bajeti</button>
+            </div>
+
+            <!-- 5. Afya ya Udongo & Weather -->
+            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
+                <div class="flex items-center gap-3 mb-4">
+                    <span class="text-4xl">🌦️</span>
+                    <div>
+                        <h3 class="text-xl font-bold text-gray-900">Hali ya Hewa & Udongo</h3>
+                        <p class="text-xs text-gray-500">Utabiri na Vipimo</p>
+                    </div>
+                </div>
+                <p class="text-gray-600 text-sm mb-6">Kagua hali ya hewa ya eneo lako na vipimo vya ubora wa udongo.</p>
+                <button onclick="openModal('modal-hewa')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Kagua Hali ya Hewa</button>
             </div>
 
         </section>
-
     </main>
 
-    <!-- Footer / Chini -->
-    <footer class="bg-gray-100 mt-20 border-t border-gray-200 text-gray-600 py-12 px-4">
-        <div class="container mx-auto text-center">
-            <p class="font-semibold text-lg mb-2">Kilimo Mkononi (AgriPocket) - Imetengenezwa kwa ajili ya COSTECH / MAKISATU 2026.</p>
-            <p>&copy; 2026. Haki zote zimehifadhiwa.</p>
-        </div>
-    </footer>
+    <!-- ==================== MADIRISHA YA NDANI (MODALS) ==================== -->
 
+    <!-- Modal 1: Soko la Mazao -->
+    <div id="modal-soko" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">📊 Bei za Masoko Hivi Sasa</h3>
+                <button onclick="closeModal('modal-soko')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            </div>
+            <div class="space-y-3">
+                <div class="p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
+                    <div>
+                        <p class="font-bold text-gray-800">Kabichi (Kilo 1)</p>
+                        <p class="text-xs text-gray-500">Soko la Mafinga / Iringa</p>
+                    </div>
+                    <span class="text-green-600 font-bold">TSH 1,200</span>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
+                    <div>
+                        <p class="font-bold text-gray-800">Nyanya (Crate 1)</p>
+                        <p class="text-xs text-gray-500">Soko Kuu la Ilala / DSM</p>
+                    </div>
+                    <span class="text-green-600 font-bold">TSH 35,000</span>
+                </div>
+                <div class="p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
+                    <div>
+                        <p class="font-bold text-gray-800">Mahindi (Gunia 100kg)</p>
+                        <p class="text-xs text-gray-500">Soko la Mbeya</p>
+                    </div>
+                    <span class="text-green-600 font-bold">TSH 75,000</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 2: Uza Zao (Form) -->
+    <div id="modal-uza" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">📝 Weka Tangazo la Kuuza</h3>
+                <button onclick="closeModal('modal-uza')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            </div>
+            <form onsubmit="event.preventDefault(); alert('Tangazo lako limewekwa sokoni successfully!'); closeModal('modal-uza');" class="space-y-4">
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Jina la Zao</label>
+                    <input type="text" placeholder="Mf. Kabichi, Mahindi" required class="w-full mt-1 p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Kiasi Kinachopatikana (Kilo/Mifuko)</label>
+                    <input type="text" placeholder="Mf. Tani 2 au Crate 50" required class="w-full mt-1 p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Bei kwa Kilo/Kipimo (TSH)</label>
+                    <input type="number" placeholder="1200" required class="w-full mt-1 p-2.5 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-green-600 text-white font-bold py-3 rounded-xl hover:bg-green-700 transition">Rusha Tangazo Sokoni</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 3: Duka la Pembejeo -->
+    <div id="modal-duka" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">🛒 Duka la Pembejeo na Mbegu</h3>
+                <button onclick="closeModal('modal-duka')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="border rounded-xl p-4 text-center">
+                    <span class="text-3xl">🌱</span>
+                    <h4 class="font-bold text-gray-800 mt-2">Mbolea ya DAP (50kg)</h4>
+                    <p class="text-xs text-gray-500 my-1">Yara Mila - Kanda ya Kusini</p>
+                    <p class="text-green-600 font-bold text-sm">TSH 135,000</p>
+                    <button onclick="alert('Imeongezwa kwenye kikapu!');" class="mt-3 w-full bg-gray-900 text-white text-xs py-2 rounded-lg hover:bg-black">Weka Kikapuni</button>
+                </div>
+                <div class="border rounded-xl p-4 text-center">
+                    <span class="text-3xl">🥬</span>
+                    <h4 class="font-bold text-gray-800 mt-2">Mbegu ya Kabichi (Gloria)</h4>
+                    <p class="text-xs text-gray-500 my-1">Paketi ya Gramu 100</p>
+                    <p class="text-green-600 font-bold text-sm">TSH 45,000</p>
+                    <button onclick="alert('Imeongezwa kwenye kikapu!');" class="mt-3 w-full bg-gray-900 text-white text-xs py-2 rounded-lg hover:bg-black">Weka Kikapuni</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 4: AI Chat -->
+    <div id="modal-ai" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 flex flex-col h-[500px]">
+            <div class="flex justify-between items-center pb-3 border-b">
+                <div class="flex items-center gap-2">
+                    <span class="text-2xl">🤖</span>
+                    <h3 class="font-bold text-gray-900">AgriPocket AI Assistant</h3>
+                </div>
+                <button onclick="closeModal('modal-ai')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            </div>
+            <div id="chat-box" class="flex-1 my-4 overflow-y-auto space-y-3 text-sm pr-1">
+                <div class="bg-blue-50 p-3 rounded-xl max-w-[85%] text-blue-900">
+                    Habari! Mimi ni msaidizi wako wa AI. Una swali gani kuhusu mbolea, magonjwa ya mimea au ratiba ya kilimo leo?
+                </div>
+            </div>
+            <form onsubmit="sendChatMessage(event)" class="flex gap-2 border-t pt-3">
+                <input id="chat-input" type="text" placeholder="Andika swali hapa..." required class="flex-1 border rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500">
+                <button type="submit" class="bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-xl hover:bg-blue-700">Tuma</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Modal 5: Kikokotoo cha Fedha -->
+    <div id="modal-fedha" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">🧮 Kikokotoo cha Faida</h3>
+                <button onclick="closeModal('modal-fedha')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            </div>
+            <div class="space-y-3 text-sm">
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Ukubwa wa Eneo (Ekari)</label>
+                    <input id="ekari" type="number" value="1" oninput="calculateProfit()" class="w-full mt-1 p-2 border rounded-xl">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Gharama za Maandalizi & Mbolea (TSH)</label>
+                    <input id="gharama" type="number" value="600000" oninput="calculateProfit()" class="w-full mt-1 p-2 border rounded-xl">
+                </div>
+                <div class="p-4 bg-green-50 rounded-xl border border-green-200 mt-4 text-center">
+                    <p class="text-xs text-gray-600">Makadirio ya Faida Halisi:</p>
+                    <p id="matokeo-faida" class="text-2xl font-extrabold text-green-700 mt-1">TSH 1,800,000</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 6: Weather -->
+    <div id="modal-hewa" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-xl font-bold text-gray-900">🌤️ Hali ya Hewa - Mafinga</h3>
+                <button onclick="closeModal('modal-hewa')" class="text-gray-400 hover:text-gray-600 font-bold">✕</button>
+            </div>
+            <div class="p-6 bg-blue-50 rounded-2xl mb-4">
+                <span class="text-5xl">🌧️</span>
+                <p class="text-3xl font-extrabold text-gray-800 mt-2">22°C</p>
+                <p class="text-xs font-semibold text-blue-600 mt-1">Mvua Maeneo Machache (Unyevu 78%)</p>
+            </div>
+            <div class="text-left bg-gray-50 p-4 rounded-xl text-xs space-y-2 border">
+                <p class="font-bold text-gray-700">Ushauri wa Udongo Leo:</p>
+                <p class="text-gray-600">• Udongo una unyevu wa kutosha (pH 6.4). Sio lazima kumwagilia leo.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts za Interaction -->
+    <script>
+        function openModal(id) {
+            document.getElementById(id).classList.remove('opacity-0', 'pointer-events-none');
+            document.body.classList.add('modal-active');
+        }
+
+        function closeModal(id) {
+            document.getElementById(id).classList.add('opacity-0', 'pointer-events-none');
+            document.body.classList.remove('modal-active');
+        }
+
+        function sendChatMessage(e) {
+            e.preventDefault();
+            const input = document.getElementById('chat-input');
+            const box = document.getElementById('chat-box');
+            const text = input.value;
+
+            // User Message
+            box.innerHTML += `<div class="bg-gray-100 p-3 rounded-xl max-w-[85%] text-gray-800 ml-auto">${text}</div>`;
+            input.value = '';
+            box.scrollTop = box.scrollHeight;
+
+            // AI Reply Simulation
+            setTimeout(() => {
+                box.innerHTML += `<div class="bg-blue-50 p-3 rounded-xl max-w-[85%] text-blue-900">Shukrani kwa swali. Kwa eneo lako la Mafinga, unashauriwa kutumia mbolea yenye Nitrojeni ya kutosha kwa ajili ya kukuzia.</div>`;
+                box.scrollTop = box.scrollHeight;
+            }, 800);
+        }
+
+        function calculateProfit() {
+            const ekari = parseFloat(document.getElementById('ekari').value) || 0;
+            const gharama = parseFloat(document.getElementById('gharama').value) || 0;
+            // Makadirio ya mavuno TSH 2.4m kwa ekari 1
+            const faida = (ekari * 2400000) - gharama;
+            document.getElementById('matokeo-faida').innerText = 'TSH ' + faida.toLocaleString();
+        }
+    </script>
 </body>
 </html>
