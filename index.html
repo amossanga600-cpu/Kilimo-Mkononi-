@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="sw">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kilimo Mkononi / AgriPocket - Working Demo</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+
+    <!-- Header -->
+    <header class="bg-green-700 text-white p-4 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="text-xl font-bold">🌾 Kilimo Mkononi (AgriPocket)</h1>
+            <span class="bg-green-500 text-xs px-3 py-1 rounded-full font-semibold">Live Prototype</span>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="container mx-auto mt-6 p-4">
+        
+        <div class="bg-white p-6 rounded-lg shadow-md mb-6">
+            <h2 class="text-2xl font-bold text-gray-800 mb-2">Mfumo wa Usimamizi na Ushauri wa Kilimo</h2>
+            <p class="text-gray-600">Huu ni mfano unaofanya kazi (MVP) unaosaidia wakulima kupata taarifa za udongo, ratiba za upandaji, na masoko kwa urahisi.</p>
+        </div>
+
+        <!-- Dashboard Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <!-- Card 1 -->
+            <div class="bg-white p-5 rounded-lg shadow border-l-4 border-green-600">
+                <h3 class="font-bold text-lg text-gray-700">🌱 Afya ya Udongo</h3>
+                <p class="text-sm text-gray-500 mt-2">Pima na uangalie viwango vya pH na virutubisho vya udongo wako.</p>
+                <button onclick="alert('Mfumo unapima udongo... Matokeo: pH 6.5 (Bora)')" class="mt-4 bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700 text-sm">Angalia Udongo</button>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-5 rounded-lg shadow border-l-4 border-blue-600">
+                <h3 class="font-bold text-lg text-gray-700">📅 Ratiba ya Upandaji</h3>
+                <p class="text-sm text-gray-500 mt-2">Panga muda sahihi wa kuhamisha miche kwenda shambani.</p>
+                <button onclick="alert('Ratiba: Hamisha miche ya kabichi siku ya 21 hadi 25.')" class="mt-4 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 text-sm">Onyesha Ratiba</button>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-5 rounded-lg shadow border-l-4 border-yellow-500">
+                <h3 class="font-bold text-lg text-gray-700">📊 Bei za Masoko</h3>
+                <p class="text-sm text-gray-500 mt-2">Angalia mabadiliko ya bei za mazao katika masoko mbalimbali.</p>
+                <button onclick="alert('Kabichi (Kilo 1): TSH 1,200 | Soko la Mafinga')" class="mt-4 bg-yellow-500 text-white px-4 py-2 rounded hover:bg-yellow-600 text-sm">Kagua Masoko</button>
+            </div>
+
+        </div>
+
+    </main>
+
+</body>
+</html>
+
