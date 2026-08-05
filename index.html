@@ -460,5 +460,58 @@
             document.getElementById('matokeo-faida').innerText = 'TSH ' + faida.toLocaleString();
         }
     </script>
+        <!-- ==================== MODAL YA UZA ZAO ==================== -->
+    <div id="modal-uza" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-gray-900">🌾 Weka Mazao Yako Sokoni</h3>
+                <button onclick="closeModal('modal-uza')" class="text-gray-400 font-bold text-xl">✕</button>
+            </div>
+            <form onsubmit="ongezaZaoSokoni(event)" class="space-y-3">
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Jina la Zao (mf. Kabichi, Nyanya)</label>
+                    <input id="weka-jina-zao" type="text" placeholder="Ingiza jina la zao" required class="w-full mt-1 p-2.5 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Eneo / Soko (mf. Mafinga, Iringa)</label>
+                    <input id="weka-eneo-zao" type="text" placeholder="Ingiza eneo lilipo zao" required class="w-full mt-1 p-2.5 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <div>
+                    <label class="text-xs font-bold text-gray-700">Bei kwa Kilo/Tenga (TSH)</label>
+                    <input id="weka-bei-zao" type="number" placeholder="mf. 2000" required class="w-full mt-1 p-2.5 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-500">
+                </div>
+                <button type="submit" class="w-full bg-green-700 text-white font-bold py-3 rounded-xl hover:bg-green-800 text-sm transition mt-2">Weka Sokoni Sasa</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- ==================== SCRIPT YA KUONGEZA ZAO ==================== -->
+    <script>
+        function ongezaZaoSokoni(e) {
+            e.preventDefault();
+            const jina = document.getElementById('weka-jina-zao').value;
+            const eneo = document.getElementById('weka-eneo-zao').value;
+            const beiInput = document.getElementById('weka-bei-zao').value;
+            const bei = parseFloat(beiInput).toLocaleString();
+
+            const orodha = document.getElementById('orodha-mazao');
+            if (orodha) {
+                const zaoJipya = `
+                    <div class="zao-item p-3 bg-green-50 rounded-xl flex justify-between items-center border border-green-200">
+                        <div>
+                            <p class="font-bold text-gray-800 zao-jina">${jina}</p>
+                            <p class="text-xs text-gray-500">Soko la ${eneo} (Mpya)</p>
+                        </div>
+                        <span class="text-green-600 font-bold">TSH ${bei}</span>
+                    </div>
+                `;
+                orodha.insertAdjacentHTML('afterbegin', zaoJipya);
+            }
+            closeModal('modal-uza');
+            alert('✅ Zao lako limefungwa na kuwekwa sokoni kufanikiwa!');
+            openModal('modal-soko');
+        }
+    </script>
+
 </body>
 </html>
