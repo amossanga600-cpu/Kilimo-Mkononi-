@@ -511,7 +511,33 @@
             alert('✅ Zao lako limefungwa na kuwekwa sokoni kufanikiwa!');
             openModal('modal-soko');
         }
-    </script>
+    </script><!-- Pakia Google Generative AI Library -->
+<script type="module">
+  import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
+
+  // 1. Weka API Key yako hapa
+  const API_KEY = "WEKA_API_KEY_YAKO_HAPA"; 
+  const genAI = new GoogleGenerativeAI(API_KEY);
+
+  // 2. Weka Mipaka na System Instructions za Kilimo
+  const model = genAI.getGenerativeModel({ 
+    model: "gemini-1.5-flash",
+    systemInstruction: "Wewe ni Mshauri wa Kilimo Mkononi nchini Tanzania. Kazi yako ni kutoa ushauri wa kilimo na afya ya mazao kwa Kiswahili tu. Ukiulizwa mambo yasiyohusu kilimo, kataa kwa heshima."
+  });
+
+  // 3. Function ya Kutuma Swali na Kupata Jibu
+  window.ulizaMshauriAI = async function(swali) {
+    try {
+      const result = await model.generateContent(swali);
+      const jibu = result.response.text();
+      return jibu;
+    } catch (error) {
+      console.error("Hitilafu:", error);
+      return "Samahani, imetokea hitilafu ya kuunganisha na AI.";
+    }
+  };
+</script>
+
 
 </body>
 </html>
