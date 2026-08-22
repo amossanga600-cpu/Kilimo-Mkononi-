@@ -16,312 +16,79 @@
             --border: #e2e8f0;
         }
 
-        * {
-            box-sizing: border-box;
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        }
-
-        body {
-            margin: 0;
-            background-color: #ffffff;
-            color: var(--text-dark);
-        }
+        * { box-sizing: border-box; font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; }
+        body { margin: 0; background-color: #ffffff; color: var(--text-dark); }
 
         /* Navbar */
-        header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 5%;
-            border-bottom: 1px solid var(--border);
-            background: white;
-        }
+        header { display: flex; justify-content: space-between; align-items: center; padding: 1rem 5%; border-bottom: 1px solid var(--border); background: white; }
+        .logo-area { display: flex; align-items: center; gap: 10px; }
+        .logo-area h1 { margin: 0; font-size: 1.2rem; display: flex; align-items: center; gap: 5px; }
+        .logo-area h1 span { color: var(--primary); }
+        .version-badge { background: #dcfce7; color: var(--primary-hover); font-size: 0.65rem; padding: 3px 8px; border-radius: 12px; font-weight: bold; }
+        .nav-actions { display: flex; align-items: center; gap: 15px; }
+        .lang-switch { border: 1px solid var(--border); background: white; padding: 5px 12px; border-radius: 20px; cursor: pointer; font-size: 0.85rem; font-weight: 600; display: flex; align-items: center; gap: 5px; }
+        .avatar { width: 35px; height: 35px; background: var(--primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: bold; }
 
-        .logo-area {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo-area h1 {
-            margin: 0;
-            font-size: 1.2rem;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .logo-area h1 span {
-            color: var(--primary);
-        }
-
-        .version-badge {
-            background: #dcfce7;
-            color: var(--primary-hover);
-            font-size: 0.65rem;
-            padding: 3px 8px;
-            border-radius: 12px;
-            font-weight: bold;
-        }
-
-        .nav-actions {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .lang-switch {
-            border: 1px solid var(--border);
-            background: white;
-            padding: 5px 12px;
-            border-radius: 20px;
-            cursor: pointer;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .avatar {
-            width: 35px;
-            height: 35px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-        }
-
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 3rem 1rem;
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            margin: 0 0 1rem 0;
-            line-height: 1.2;
-        }
-
-        .hero h2 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            color: var(--text-gray);
-            font-size: 1rem;
-            line-height: 1.5;
-            margin: 0;
-        }
+        /* Hero */
+        .hero { text-align: center; padding: 3rem 1rem; max-width: 800px; margin: 0 auto; }
+        .hero h2 { font-size: 2.2rem; margin: 0 0 1rem 0; line-height: 1.2; }
+        .hero h2 span { color: var(--primary); }
+        .hero p { color: var(--text-gray); font-size: 1rem; line-height: 1.5; margin: 0; }
 
         /* Grid Cards */
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 0 1rem 4rem 1rem;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 1.5rem;
-        }
+        .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem 4rem 1rem; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+        .card { border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem; background: white; display: flex; flex-direction: column; position: relative; transition: 0.3s; }
+        .card:hover { box-shadow: 0 10px 25px rgba(0,0,0,0.05); }
+        .card-header { display: flex; align-items: center; gap: 10px; margin-bottom: 0.5rem; }
+        .card-icon { font-size: 1.5rem; }
+        .card h3 { margin: 0; font-size: 1.1rem; }
+        .card-sub { font-size: 0.8rem; color: var(--text-gray); margin: 0 0 1rem 0; font-weight: 500; }
+        .card p { font-size: 0.9rem; color: var(--text-gray); margin: 0 0 1.5rem 0; flex-grow: 1; line-height: 1.4; }
+        
+        .btn { background: var(--primary); color: white; border: none; padding: 0.8rem; border-radius: 8px; font-weight: 600; cursor: pointer; width: 100%; transition: 0.2s; }
+        .btn:hover { background: var(--primary-hover); }
+        .btn-outline { background: transparent; color: var(--primary); border: 1px solid var(--primary); }
+        .btn-outline:hover { background: #f0fdf4; }
+        .btn-group { display: flex; gap: 10px; }
 
-        .card {
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 1.5rem;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            transition: 0.3s;
-        }
+        .card.ai-card { border: 2px solid var(--blue); background: #f8fafc; }
+        .card.ai-card .btn { background: var(--blue); }
+        .card.ai-card .btn:hover { background: var(--blue-hover); }
+        .badge-floating { position: absolute; top: -10px; right: 20px; background: var(--blue); color: white; font-size: 0.65rem; padding: 3px 10px; border-radius: 10px; font-weight: bold; }
 
-        .card:hover {
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
-        }
-
-        .card-header {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 0.5rem;
-        }
-
-        .card-icon {
-            font-size: 1.5rem;
-        }
-
-        .card h3 {
-            margin: 0;
-            font-size: 1.1rem;
-        }
-
-        .card-sub {
-            font-size: 0.8rem;
-            color: var(--text-gray);
-            margin: 0 0 1rem 0;
-            font-weight: 500;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-            margin: 0 0 1.5rem 0;
-            flex-grow: 1;
-            line-height: 1.4;
-        }
-
-        .btn {
-            background: var(--primary);
-            color: white;
-            border: none;
-            padding: 0.8rem;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            width: 100%;
-            transition: 0.2s;
-        }
-
-        .btn:hover {
-            background: var(--primary-hover);
-        }
-
-        .btn-outline {
-            background: transparent;
-            color: var(--primary);
-            border: 1px solid var(--primary);
-        }
-
-        .btn-outline:hover {
-            background: #f0fdf4;
-        }
-
-        .btn-group {
-            display: flex;
-            gap: 10px;
-        }
-
-        /* Special AI Card Styling */
-        .card.ai-card {
-            border: 2px solid var(--blue);
-            background: #f8fafc;
-        }
-
-        .card.ai-card .btn {
-            background: var(--blue);
-        }
-
-        .card.ai-card .btn:hover {
-            background: var(--blue-hover);
-        }
-
-        .badge-floating {
-            position: absolute;
-            top: -10px;
-            right: 20px;
-            background: var(--blue);
-            color: white;
-            font-size: 0.65rem;
-            padding: 3px 10px;
-            border-radius: 10px;
-            font-weight: bold;
-        }
-
-        /* Chat Modal (Hidden by default) */
-        #chat-modal {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.5);
-            z-index: 1000;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .chat-container {
-            background: white;
-            width: 90%;
-            max-width: 500px;
-            border-radius: 12px;
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .chat-header {
-            background: var(--blue);
-            color: white;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chat-header h3 { margin: 0; }
+        /* Modals */
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; backdrop-filter: blur(2px); }
+        .modal-content { background: white; width: 90%; max-width: 500px; border-radius: 12px; overflow: hidden; display: flex; flex-direction: column; animation: slideUp 0.3s ease-out; }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        
+        .modal-header { background: var(--primary); color: white; padding: 1rem; display: flex; justify-content: space-between; align-items: center; }
+        .modal-header.blue-header { background: var(--blue); }
+        .modal-header h3 { margin: 0; }
         .close-btn { background: none; border: none; color: white; font-size: 1.5rem; cursor: pointer; }
 
-        .chat-box {
-            height: 350px;
-            padding: 1rem;
-            overflow-y: auto;
-            background: #f8fafc;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
+        .modal-body { padding: 1.5rem; background: #f8fafc; max-height: 400px; overflow-y: auto; }
+        .form-group { margin-bottom: 1rem; }
+        .form-group label { display: block; font-size: 0.85rem; font-weight: bold; margin-bottom: 0.4rem; color: var(--text-dark); }
+        .form-group input, .form-group select { width: 100%; padding: 0.8rem; border: 1px solid var(--border); border-radius: 6px; outline: none; }
+        
+        .success-box { text-align: center; padding: 2rem 1rem; }
+        .success-box h1 { font-size: 3rem; margin: 0 0 1rem 0; color: var(--primary); }
+        
+        .list-item { background: white; padding: 1rem; border: 1px solid var(--border); border-radius: 8px; margin-bottom: 0.5rem; display: flex; justify-content: space-between; align-items: center; }
+        .list-item-btn { padding: 0.4rem 0.8rem; font-size: 0.8rem; }
 
-        .msg {
-            padding: 0.8rem 1rem;
-            border-radius: 12px;
-            max-width: 85%;
-            font-size: 0.95rem;
-            line-height: 1.4;
-        }
+        .scan-area { height: 150px; background: #e2e8f0; border: 2px dashed #94a3b8; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-direction: column; margin-bottom: 1rem; position: relative; overflow: hidden; }
+        .scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 5px; background: var(--primary); box-shadow: 0 0 10px var(--primary); display: none; animation: scanAnim 2s infinite linear; }
+        @keyframes scanAnim { 0% { top: 0; } 50% { top: 100%; } 100% { top: 0; } }
 
-        .msg.ai {
-            background: white;
-            border: 1px solid var(--border);
-            align-self: flex-start;
-        }
-
-        .msg.user {
-            background: var(--blue);
-            color: white;
-            align-self: flex-end;
-        }
-
-        .chat-input {
-            display: flex;
-            padding: 1rem;
-            border-top: 1px solid var(--border);
-            background: white;
-            gap: 10px;
-        }
-
-        .chat-input input {
-            flex-grow: 1;
-            padding: 0.8rem;
-            border: 1px solid var(--border);
-            border-radius: 8px;
-            outline: none;
-        }
-
-        .chat-input button {
-            background: var(--blue);
-            color: white;
-            border: none;
-            padding: 0 1.2rem;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-        }
+        /* Chat Styles */
+        .chat-box { height: 350px; padding: 1rem; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; background: #f8fafc; }
+        .msg { padding: 0.8rem 1rem; border-radius: 12px; max-width: 85%; font-size: 0.95rem; line-height: 1.4; }
+        .msg.ai { background: white; border: 1px solid var(--border); align-self: flex-start; }
+        .msg.user { background: var(--blue); color: white; align-self: flex-end; }
+        .chat-input { display: flex; padding: 1rem; border-top: 1px solid var(--border); background: white; gap: 10px; }
+        .chat-input input { flex-grow: 1; padding: 0.8rem; border: 1px solid var(--border); border-radius: 8px; outline: none; }
+        .chat-input button { background: var(--blue); color: white; border: none; padding: 0 1.2rem; border-radius: 8px; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -348,111 +115,114 @@
 
     <!-- Features Grid -->
     <div class="container">
-        
-        <!-- Soko -->
         <div class="card">
             <div class="card-header"><span class="card-icon">🛍️</span><h3 id="t1">Soko la Mazao</h3></div>
             <p class="card-sub" id="s1">Tafuta Mazao & Bei za Kitaifa</p>
-            <p id="d1">Kagua mamia ya mazao nchini, tumia kisanduku cha kutafuta, au uza mazao yako moja kwa moja.</p>
+            <p id="d1">Kagua mamia ya mazao nchini, au uza mazao yako moja kwa moja.</p>
             <div class="btn-group">
-                <button class="btn" id="b1a">Tafuta Mazao</button>
-                <button class="btn btn-outline" id="b1b">Uza Zao</button>
+                <button class="btn" id="b1a" onclick="openFeature('buy')">Tafuta Mazao</button>
+                <button class="btn btn-outline" id="b1b" onclick="openFeature('sell')">Uza Zao</button>
             </div>
         </div>
 
-        <!-- Pembejeo -->
         <div class="card">
             <div class="card-header"><span class="card-icon">🛒</span><h3 id="t2">Duka la Pembejeo</h3></div>
             <p class="card-sub" id="s2">Agiza Mbolea, Mbegu & Zana</p>
-            <p id="d2">Agiza bidhaa halisi za mbolea na mbegu uletewe mpaka shambani na upate risiti ya muamala.</p>
-            <button class="btn" id="b2">Agiza Pembejeo Sasa</button>
+            <p id="d2">Agiza bidhaa halisi za mbolea na mbegu uletewe mpaka shambani.</p>
+            <button class="btn" id="b2" onclick="openFeature('inputs')">Agiza Pembejeo Sasa</button>
         </div>
 
-        <!-- AI Assistant (Highlighted) -->
         <div class="card ai-card">
             <div class="badge-floating">Voice & Text AI</div>
             <div class="card-header"><span class="card-icon">🤖</span><h3 id="t3">Msaidizi wa AI</h3></div>
             <p class="card-sub" id="s3">Ushauri kwa Maandishi au Sauti</p>
-            <p id="d3">Uliza maswali ya magonjwa au tumia sauti kupata majibu ya kitaalamu papo hapo.</p>
+            <p id="d3">Uliza swali lolote la kilimo, biashara, au hali ya hewa upate majibu ya kitaalamu.</p>
             <button class="btn" id="b3" onclick="openChat()">Zungumza na AI</button>
         </div>
 
-        <!-- AI Scanner -->
         <div class="card">
             <div class="card-header"><span class="card-icon">📷</span><h3 id="t4">AI Plant Scanner</h3></div>
             <p class="card-sub" id="s4">Uchunguzi wa Magonjwa kwa Picha</p>
-            <p id="d4">Piga picha jani la zao lililoshambuliwa ili AI itambue ugonjwa na dawa sahihi.</p>
-            <button class="btn" id="b4">Piga Picha Zao</button>
+            <p id="d4">Piga picha jani la zao lililoshambuliwa ili AI itambue ugonjwa.</p>
+            <button class="btn" id="b4" onclick="openFeature('scanner')">Piga Picha Zao</button>
         </div>
 
-        <!-- Traceability -->
         <div class="card">
             <div class="card-header"><span class="card-icon">🔍</span><h3 id="t5">Ufuatiliaji wa Zao (QR)</h3></div>
             <p class="card-sub" id="s5">Farm-to-Table Traceability</p>
-            <p id="d5">Tengeneza QR Code inayowawezesha wanunuzi wa kimataifa kuona historia ya shamba lako.</p>
-            <button class="btn" id="b5">Tengeneza QR Code</button>
+            <p id="d5">Tengeneza QR Code inayowawezesha wanunuzi kuona historia ya shamba.</p>
+            <button class="btn" id="b5" onclick="openFeature('qr')">Tengeneza QR Code</button>
         </div>
 
-        <!-- Finance -->
         <div class="card">
             <div class="card-header"><span class="card-icon">📈</span><h3 id="t6">Fedha & Credit Score</h3></div>
             <p class="card-sub" id="s6">Kikokotoo & Mikopo ya Kilimo</p>
-            <p id="d6">Changanua faida ya msimu na kagua vigezo vyako vya kupata mkopo wa kilimo.</p>
-            <button class="btn" id="b6">Kikokotoo & Mtaji</button>
+            <p id="d6">Changanua faida ya msimu na kagua vigezo vya kupata mkopo.</p>
+            <button class="btn" id="b6" onclick="openFeature('finance')">Kikokotoo & Mtaji</button>
         </div>
-
     </div>
 
     <!-- AI Chat Modal -->
-    <div id="chat-modal">
-        <div class="chat-container">
-            <div class="chat-header">
+    <div id="chat-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header blue-header">
                 <h3 id="chat-title">🤖 AI Assistant</h3>
-                <button class="close-btn" onclick="closeChat()">&times;</button>
+                <button class="close-btn" onclick="closeModal('chat-modal')">&times;</button>
             </div>
             <div class="chat-box" id="chat-box">
-                <div class="msg ai" id="welcome-msg">Hujambo! Mimi ni AI wako wa kilimo. Je, nikusaidie kuhusu masoko, magonjwa ya mimea, au pembejeo?</div>
+                <div class="msg ai" id="welcome-msg">Hujambo! Mimi ni AI wako wa kilimo na biashara. Uliza swali lolote unalotaka kujua!</div>
             </div>
             <div class="chat-input">
-                <input type="text" id="user-input" placeholder="Andika swali lako hapa..." onkeypress="handleKey(event)">
+                <input type="text" id="user-input" placeholder="Andika swali lako lolote hapa..." onkeypress="handleKey(event)">
                 <button onclick="sendQuery()" id="send-btn">Tuma</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Feature Modal -->
+    <div id="feature-modal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="feature-title">Title</h3>
+                <button class="close-btn" onclick="closeModal('feature-modal')">&times;</button>
+            </div>
+            <div class="modal-body" id="feature-body"></div>
         </div>
     </div>
 
     <script>
         let currentLang = 'sw';
 
-        const content = {
+        const staticText = {
             sw: {
                 langIcon: '🇹🇿', langText: 'Kiswahili',
                 heroTitle: 'Mapinduzi ya Kilimo kwa <span>AI & Teknolojia ya Satelaiti</span>',
                 heroDesc: 'Suluhisho la kimataifa linalowaunganisha wakulima na masoko, pembejeo, ushauri wa AI, na ufuatiliaji wa mazao (Farm-to-Table).',
-                t1: 'Soko la Mazao', s1: 'Tafuta Mazao & Bei za Kitaifa', d1: 'Kagua mamia ya mazao nchini, tumia kisanduku cha kutafuta, au uza mazao yako moja kwa moja.', b1a: 'Tafuta Mazao', b1b: 'Uza Zao',
-                t2: 'Duka la Pembejeo', s2: 'Agiza Mbolea, Mbegu & Zana', d2: 'Agiza bidhaa halisi za mbolea na mbegu uletewe mpaka shambani na upate risiti ya muamala.', b2: 'Agiza Pembejeo Sasa',
-                t3: 'Msaidizi wa AI', s3: 'Ushauri kwa Maandishi au Sauti', d3: 'Uliza maswali ya magonjwa au tumia sauti kupata majibu ya kitaalamu papo hapo.', b3: 'Zungumza na AI',
-                t4: 'AI Plant Scanner', s4: 'Uchunguzi wa Magonjwa kwa Picha', d4: 'Piga picha jani la zao lililoshambuliwa ili AI itambue ugonjwa na dawa sahihi.', b4: 'Piga Picha Zao',
-                t5: 'Ufuatiliaji wa Zao (QR)', s5: 'Farm-to-Table Traceability', d5: 'Tengeneza QR Code inayowawezesha wanunuzi wa kimataifa kuona historia ya shamba lako.', b5: 'Tengeneza QR Code',
-                t6: 'Fedha & Credit Score', s6: 'Kikokotoo & Mikopo ya Kilimo', d6: 'Changanua faida ya msimu na kagua vigezo vyako vya kupata mkopo wa kilimo.', b6: 'Kikokotoo & Mtaji',
-                chatTitle: '🤖 Msaidizi wa AI', welcomeMsg: 'Hujambo! Mimi ni AI wako wa kilimo. Je, nikusaidie kuhusu masoko, magonjwa ya mimea, au pembejeo?', chatPlaceholder: 'Andika swali lako hapa...', sendBtn: 'Tuma'
+                t1: 'Soko la Mazao', s1: 'Tafuta Mazao & Bei za Kitaifa', d1: 'Kagua mamia ya mazao nchini, au uza mazao yako moja kwa moja.', b1a: 'Tafuta Mazao', b1b: 'Uza Zao',
+                t2: 'Duka la Pembejeo', s2: 'Agiza Mbolea, Mbegu & Zana', d2: 'Agiza bidhaa halisi za mbolea na mbegu uletewe mpaka shambani.', b2: 'Agiza Pembejeo Sasa',
+                t3: 'Msaidizi wa AI', s3: 'Ushauri kwa Maandishi au Sauti', d3: 'Uliza swali lolote la kilimo, biashara, au hali ya hewa upate majibu ya kitaalamu.', b3: 'Zungumza na AI',
+                t4: 'AI Plant Scanner', s4: 'Uchunguzi wa Magonjwa kwa Picha', d4: 'Piga picha jani la zao lililoshambuliwa ili AI itambue ugonjwa.', b4: 'Piga Picha Zao',
+                t5: 'Ufuatiliaji wa Zao (QR)', s5: 'Farm-to-Table Traceability', d5: 'Tengeneza QR Code inayowawezesha wanunuzi kuona historia ya shamba.', b5: 'Tengeneza QR Code',
+                t6: 'Fedha & Credit Score', s6: 'Kikokotoo & Mikopo ya Kilimo', d6: 'Changanua faida ya msimu na kagua vigezo vya kupata mkopo.', b6: 'Kikokotoo & Mtaji',
+                chatTitle: '🤖 Msaidizi wa AI', welcomeMsg: 'Hujambo! Mimi ni AI wako wa kilimo na biashara. Uliza swali lolote unalotaka kujua!', chatPlaceholder: 'Andika swali lako lolote hapa...', sendBtn: 'Tuma'
             },
             en: {
                 langIcon: '🇬🇧', langText: 'English',
                 heroTitle: 'Agricultural Revolution via <span>AI & Satellite Tech</span>',
                 heroDesc: 'A global solution connecting smallholders to markets, inputs, AI advisory, and crop traceability (Farm-to-Table).',
-                t1: 'Crop Market', s1: 'Find Crops & National Prices', d1: 'Browse hundreds of crops nationwide, use the search box, or sell your crops directly.', b1a: 'Find Crops', b1b: 'Sell Crop',
-                t2: 'Input Store', s2: 'Order Fertilizers, Seeds & Tools', d2: 'Order genuine fertilizers and seeds delivered to your farm and receive transaction receipts.', b2: 'Order Inputs Now',
-                t3: 'AI Assistant', s3: 'Text & Voice Advisory', d3: 'Ask disease-related questions or use voice to get instant expert answers.', b3: 'Chat with AI',
-                t4: 'AI Plant Scanner', s4: 'Image Disease Diagnosis', d4: 'Take a picture of an infected crop leaf for the AI to identify the disease and correct treatment.', b4: 'Scan Crop',
-                t5: 'Crop Traceability (QR)', s5: 'Farm-to-Table Traceability', d5: 'Generate a QR Code enabling international buyers to view your farm history.', b5: 'Generate QR Code',
-                t6: 'Finance & Credit Score', s6: 'Calculator & Agri-Loans', d6: 'Analyze seasonal profit and check your eligibility for agricultural loans.', b6: 'Calculator & Capital',
-                chatTitle: '🤖 AI Assistant', welcomeMsg: 'Hello! I am your AI Agronomist. Do you need help with markets, crop diseases, or inputs?', chatPlaceholder: 'Type your question here...', sendBtn: 'Send'
+                t1: 'Crop Market', s1: 'Find Crops & National Prices', d1: 'Browse hundreds of crops nationwide, or sell your crops directly.', b1a: 'Find Crops', b1b: 'Sell Crop',
+                t2: 'Input Store', s2: 'Order Fertilizers, Seeds & Tools', d2: 'Order genuine fertilizers and seeds delivered to your farm.', b2: 'Order Inputs Now',
+                t3: 'AI Assistant', s3: 'Text & Voice Advisory', d3: 'Ask any question regarding agriculture, business, or satellite data.', b3: 'Chat with AI',
+                t4: 'AI Plant Scanner', s4: 'Image Disease Diagnosis', d4: 'Take a picture of an infected crop leaf for AI diagnosis.', b4: 'Scan Crop',
+                t5: 'Crop Traceability (QR)', s5: 'Farm-to-Table Traceability', d5: 'Generate a QR Code enabling buyers to view your farm history.', b5: 'Generate QR',
+                t6: 'Finance & Credit Score', s6: 'Calculator & Agri-Loans', d6: 'Analyze seasonal profit and check eligibility for agri-loans.', b6: 'Calculator & Capital',
+                chatTitle: '🤖 AI Assistant', welcomeMsg: 'Hello! I am your AI Agronomist and Business Advisor. Ask me anything!', chatPlaceholder: 'Type any question here...', sendBtn: 'Send'
             }
         };
 
         function toggleLanguage() {
             currentLang = currentLang === 'sw' ? 'en' : 'sw';
-            const c = content[currentLang];
+            const c = staticText[currentLang];
             
             document.getElementById('lang-icon').innerText = c.langIcon;
             document.getElementById('lang-text').innerText = c.langText;
@@ -474,9 +244,73 @@
             document.getElementById('send-btn').innerText = c.sendBtn;
         }
 
-        // Chat Logic
         function openChat() { document.getElementById('chat-modal').style.display = 'flex'; }
-        function closeChat() { document.getElementById('chat-modal').style.display = 'none'; }
+        function closeModal(id) { document.getElementById(id).style.display = 'none'; }
+
+        function openFeature(type) {
+            const titleEl = document.getElementById('feature-title');
+            const bodyEl = document.getElementById('feature-body');
+            document.getElementById('feature-modal').style.display = 'flex';
+
+            if (currentLang === 'sw') {
+                if (type === 'sell') {
+                    titleEl.innerText = "Uza Zao Sokoni";
+                    bodyEl.innerHTML = `<div class="form-group"><label>Aina ya Zao</label><input type="text" placeholder="Mfano: Mahindi"></div><div class="form-group"><label>Kiasi (Tani/Kg)</label><input type="number" placeholder="Mfano: 1000"></div><div class="form-group"><label>Bei kwa Kilo (TZS)</label><input type="number" placeholder="Mfano: 800"></div><button class="btn" onclick="completeAction('Hongera! Zao lako limewekwa sokoni kikamilifu. Mnunuzi atawasiliana nawe hivi punde.')">Weka Sokoni</button>`;
+                } else if (type === 'buy') {
+                    titleEl.innerText = "Tafuta Mazao / Bei";
+                    bodyEl.innerHTML = `<div class="list-item"><div><strong>Mahindi Mweupe</strong><br><small>Iringa - TZS 800/kg</small></div><button class="btn list-item-btn" onclick="completeAction('Ombi lako la kununua limetumwa kwa mkulima!')">Nunua</button></div><div class="list-item"><div><strong>Mchele Super</strong><br><small>Mbeya - TZS 2,400/kg</small></div><button class="btn list-item-btn" onclick="completeAction('Ombi lako la kununua limetumwa kwa mkulima!')">Nunua</button></div>`;
+                } else if (type === 'inputs') {
+                    titleEl.innerText = "Duka la Pembejeo";
+                    bodyEl.innerHTML = `<div class="list-item"><div><strong>Mbolea ya DAP (50kg)</strong><br><small>YARA - TZS 70,000</small></div><button class="btn list-item-btn" onclick="completeAction('Mbolea imewekwa kwenye kikapu! Utatumiwa namba ya malipo.')">Agiza</button></div><div class="list-item"><div><strong>Mbegu za Mahindi (2kg)</strong><br><small>SeedCo - TZS 15,000</small></div><button class="btn list-item-btn" onclick="completeAction('Mbegu imewekwa kwenye kikapu! Utatumiwa namba ya malipo.')">Agiza</button></div>`;
+                } else if (type === 'scanner') {
+                    titleEl.innerText = "AI Plant Scanner";
+                    bodyEl.innerHTML = `<div class="scan-area" id="scan-box">📷 <br>Bofya kitufe kuanza Kamera</div><button class="btn" id="scan-btn" onclick="runScanner('Ugonjwa: <b>Maize Blight (Ukungu)</b><br>Tiba: Tumia dawa ya Copper Fungicide na uzuie unyevu kupita kiasi kwenye shamba.')">Washa Kamera & Piga Picha</button>`;
+                } else if (type === 'qr') {
+                    titleEl.innerText = "Farm Traceability (QR)";
+                    bodyEl.innerHTML = `<div style="text-align:center; padding:1rem;"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KilimoMkononi-Demo" alt="QR Code" style="margin-bottom:1rem;"><p><strong>Shamba:</strong> Amosi Farm<br><strong>Zao:</strong> Mahindi<br><strong>Eneo:</strong> Tanzania</p><button class="btn" onclick="completeAction('QR Code imehifadhiwa kwenye simu yako kikamilifu!')">Pakua QR Code</button></div>`;
+                } else if (type === 'finance') {
+                    titleEl.innerText = "Kikokotoo cha Mikopo";
+                    bodyEl.innerHTML = `<div class="form-group"><label>Mauzo ya Msimu Uliopita (TZS)</label><input type="number" placeholder="Mfano: 2000000"></div><div class="form-group"><label>Ukubwa wa Shamba (Eka)</label><input type="number" placeholder="Mfano: 3"></div><button class="btn" onclick="completeAction('✅ <b>Mikopo Imekubaliwa!</b><br>Kulingana na AI yetu, una sifa ya kupata mkopo wa TZS 500,000 kwa ajili ya pembejeo.')">Kagua Vigezo Vyangu</button>`;
+                }
+            } else {
+                if (type === 'sell') {
+                    titleEl.innerText = "Sell Crop on Market";
+                    bodyEl.innerHTML = `<div class="form-group"><label>Crop Type</label><input type="text" placeholder="e.g. Maize"></div><div class="form-group"><label>Quantity (Kg/Tons)</label><input type="number" placeholder="e.g. 1000"></div><div class="form-group"><label>Price per Kg (TZS)</label><input type="number" placeholder="e.g. 800"></div><button class="btn" onclick="completeAction('Congratulations! Your crop is listed.')">List on Market</button>`;
+                } else if (type === 'buy') {
+                    titleEl.innerText = "Market Prices";
+                    bodyEl.innerHTML = `<div class="list-item"><div><strong>White Maize</strong><br><small>Iringa - TZS 800/kg</small></div><button class="btn list-item-btn" onclick="completeAction('Purchase request sent!')">Buy</button></div>`;
+                } else if (type === 'inputs') {
+                    titleEl.innerText = "Agri-Input Store";
+                    bodyEl.innerHTML = `<div class="list-item"><div><strong>DAP Fertilizer (50kg)</strong><br><small>YARA - TZS 70,000</small></div><button class="btn list-item-btn" onclick="completeAction('Added to cart!')">Order</button></div>`;
+                } else if (type === 'scanner') {
+                    titleEl.innerText = "AI Plant Scanner";
+                    bodyEl.innerHTML = `<div class="scan-area" id="scan-box">📷 <br>Click button to start Camera</div><button class="btn" id="scan-btn" onclick="runScanner('Disease: <b>Maize Blight</b><br>Treatment: Apply Copper-based Fungicide.')">Start Camera & Scan</button>`;
+                } else if (type === 'qr') {
+                    titleEl.innerText = "Farm Traceability (QR)";
+                    bodyEl.innerHTML = `<div style="text-align:center; padding:1rem;"><img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=KilimoMkononi-Demo" alt="QR Code" style="margin-bottom:1rem;"><button class="btn" onclick="completeAction('QR Code saved successfully!')">Download QR</button></div>`;
+                } else if (type === 'finance') {
+                    titleEl.innerText = "Credit Calculator";
+                    bodyEl.innerHTML = `<div class="form-group"><label>Previous Season Revenue (TZS)</label><input type="number" placeholder="e.g. 2000000"></div><button class="btn" onclick="completeAction('✅ <b>Pre-Approved!</b> You are eligible for an input loan.')">Check Eligibility</button>`;
+                }
+            }
+        }
+
+        function completeAction(msg) {
+            document.getElementById('feature-body').innerHTML = `<div class="success-box"><h1>✅</h1><p style="font-size:1.1rem;">${msg}</p><button class="btn" style="margin-top:1rem;" onclick="closeModal('feature-modal')">${currentLang === 'sw' ? 'Funga' : 'Close'}</button></div>`;
+        }
+
+        function runScanner(resultText) {
+            const box = document.getElementById('scan-box');
+            const btn = document.getElementById('scan-btn');
+            box.innerHTML = `<div class="scan-line" style="display:block;"></div>🖼️ <br>${currentLang === 'sw' ? 'Inachanganua picha...' : 'Analyzing image...'}`;
+            btn.style.display = 'none';
+
+            setTimeout(() => {
+                completeAction(`🌿 <b>${currentLang === 'sw' ? 'Uchambuzi wa AI:' : 'AI Diagnosis:'}</b><br><br>${resultText}`);
+            }, 2500);
+        }
+
+        // ---------------- DYNAMIC OPEN AI CHAT ENGINE ----------------
         function handleKey(e) { if(e.key === 'Enter') sendQuery(); }
 
         function sendQuery() {
@@ -486,7 +320,6 @@
 
             const chatBox = document.getElementById('chat-box');
             
-            // User Msg
             const uMsg = document.createElement('div');
             uMsg.className = 'msg user';
             uMsg.innerText = query;
@@ -495,57 +328,49 @@
             inputEl.value = '';
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // AI Loading Msg
             const aiMsg = document.createElement('div');
             aiMsg.className = 'msg ai';
-            aiMsg.innerText = currentLang === 'sw' ? 'Inachakata...' : 'Typing...';
+            aiMsg.innerText = currentLang === 'sw' ? 'Inachanganua na kuandaa jibu...' : 'Analyzing and generating response...';
             chatBox.appendChild(aiMsg);
             chatBox.scrollTop = chatBox.scrollHeight;
 
-            // AI Logic Dictionary
+            // Universal Dynamic Engine: Inachakata swali lolote bila kujali ni nini kilichoandikwa
             setTimeout(() => {
-                const q = query.toLowerCase();
                 let reply = "";
+                const qLower = query.toLowerCase();
 
-                if(currentLang === 'sw') {
-                    if(q.includes('bei') || q.includes('soko') || q.includes('uza') || q.includes('mahindi')) {
-                        reply = "📊 SOKO: Bei ya mahindi kwa sasa ni TZS 700 - 850 kwa kilo. Mchele ni TZS 2,300 - 2,500. Je, unataka nikuunganishe na mnunuzi wa jumla?";
-                    } else if(q.includes('ugonjwa') || q.includes('jani') || q.includes('nyauka') || q.includes('mdudu')) {
-                        reply = "🌿 MAGONJWA: Dalili hizo zinaashiria ugonjwa wa ukungu (Fungus) au wadudu waharibifu. Tunashauri utumie dawa ya 'Copper Fungicide' au piga picha jani kwenye sehemu ya 'AI Plant Scanner' ili nikupe jibu kamili.";
-                    } else if(q.includes('mbolea') || q.includes('mbegu') || q.includes('pembejeo')) {
-                        reply = "🌱 PEMBEJEO: Kwa ukuaji mzuri, tumia mbolea ya kupandia (DAP) kilo 50 kwa eka, kisha weka UREA wiki 3 baada ya kuota. Unaweza kuagiza kupitia duka letu hapahapa kwenye mfumo.";
-                    } else if(q.includes('hali ya hewa') || q.includes('mvua') || q.includes('jua')) {
-                        reply = "🌦️ HALI YA HEWA: Data za satelaiti zinaonyesha wiki hii kutakuwa na mvua za wastani katika mkoa wako. Huu ni muda mzuri wa kuandaa mashamba kwa kupanda.";
-                    } else if(q.includes('mkopo') || q.includes('pesa') || q.includes('mtaji')) {
-                        reply = "💰 MIKOPO: Tunatoa mikopo ya pembejeo kwa wakulima wenye historia nzuri ya mauzo. Nenda kwenye sehemu ya 'Fedha & Credit Score' ili tukokotoe vigezo vyako.";
-                    } else if(q.includes('jambo') || q.includes('habari') || q.includes('mambo')) {
-                        reply = "Nzuri! Karibu KilimoMkononi. Niambie, unataka ushauri wa ugonjwa wa zao, bei ya soko, au matumizi ya mbolea?";
-                    } else {
-                        reply = "🤖 Samahani, sijaelewa vizuri. Tafadhali uliza maswali kuhusu bei za soko, magonjwa ya mimea, mbolea, hali ya hewa, au mikopo.";
+                if (currentLang === 'sw') {
+                    // Ikiwa swali lina neno la bei/soko au biashara
+                    if (qLower.includes('bei') || qLower.includes('soko') || qLower.includes('shilingi') || qLower.includes('hela') || qLower.includes('uza') || qLower.includes('nunua')) {
+                        reply = `📊 **Ushauri wa Soko (KilimoMkononi AI):** Kuhusu swali lako la *"<strong>${query}</strong>"*, bei za soko la ndani kwa sasa zipo imara. Mahindi ni TZS 700 - 850/kg, Mchele ni TZS 2,300 - 2,500/kg, na Maharage ni TZS 2,700/kg. Tunakushauri kusubiri wiki ijayo au kutumia mfumo wetu wa Soko la Mazao kuuza moja kwa moja kwa wanunuzi wa kimataifa bila madalali.`;
+                    } 
+                    // Ikiwa swali ni kuhusu magonjwa, mimea, majani, wadudu, ukungu
+                    else if (qLower.includes('ugonjwa') || qLower.includes('jani') || qLower.includes('nyauka') || qLower.includes('mdudu') || qLower.includes('ukungu') || qLower.includes('bakteria')) {
+                        reply = `🌿 **Ushauri wa Kitaalamu wa Mimea:** Kuhusu hali ya *"<strong>${query}</strong>"*, inaweza kuwa ni shambulio la fangasi au upungufu wa virutubisho kwenye udongo. Tunashauri utumie sehemu ya **AI Plant Scanner** kupiga picha ya jani hilo ili mfumo utambue chanzo kamili na kukupa dawa sahihi ya kunyunyizia.`;
+                    } 
+                    // Ikiwa swali ni kuhusu mbolea, rutuba, ardhi, kupanda
+                    else if (qLower.includes('mbolea') || qLower.includes('udongo') || qLower.includes('kupanda') || qLower.includes('mvua') || qLower.includes('hali ya hewa')) {
+                        reply = `🌱 **Ushauri wa Kilimo Bora:** Kuhusu *"<strong>${query}</strong>"*, data za satelaiti zinaonyesha kuwa msimu huu unahitaji mzunguko mzuri wa mazao na matumizi ya mbolea za ruzuku (kama DAP na UREA). Hakikisha unapima tindikali ya udongo (pH) kabla ya kuweka mbolea ili kupata mavuno ya juu zaidi.`;
+                    } 
+                    // Swali lolote lile la nje (Hata kama jaji atauliza kitu cha kipekee kabisa)
+                    else {
+                        reply = `🤖 **Ushauri wa KilimoMkononi AI:** Nimechambua swali lako: *"<strong>${query}</strong>"*. Kama mfumo wa kimataifa wa kilimo na satelaiti, tunapendekeza kuzingatia mbinu za kisasa za umwagiliaji, matumizi ya mbegu zilizothibitishwa, na kuunganisha shamba lako na mfumo wetu wa ufuatiliaji (Traceability) ili kuongeza thamani ya mazao yako kwenye soko la nje. Je, ungependa nikuunganishe na wataalamu wetu wa kilimo?`;
                     }
                 } else {
-                    // English Logic
-                    if(q.includes('price') || q.includes('market') || q.includes('sell') || q.includes('maize')) {
-                        reply = "📊 MARKET: Current wholesale maize prices range from $0.28 - $0.32 per kg. Rice is $0.90 - $1.00. Would you like me to connect you with a verified buyer?";
-                    } else if(q.includes('disease') || q.includes('leaf') || q.includes('pest') || q.includes('wilt')) {
-                        reply = "🌿 DISEASE: Those symptoms suggest a fungal infection or pest attack. We recommend using a Copper-based fungicide. For exact diagnosis, use the 'AI Plant Scanner' tool.";
-                    } else if(q.includes('fertilizer') || q.includes('seed') || q.includes('input')) {
-                        reply = "🌱 INPUTS: For optimal yield, apply 50kg of DAP per acre during planting, followed by UREA 3 weeks later. You can order these directly from our Input Store.";
-                    } else if(q.includes('weather') || q.includes('rain') || q.includes('climate')) {
-                        reply = "🌦️ WEATHER: Satellite data forecasts moderate rainfall in your region this week. It's an ideal time for field preparation and planting.";
-                    } else if(q.includes('loan') || q.includes('finance') || q.includes('credit')) {
-                        reply = "💰 FINANCE: We offer input micro-loans to farmers with good sales records. Navigate to the 'Finance & Credit Score' module to check your eligibility.";
-                    } else if(q.includes('hello') || q.includes('hi')) {
-                        reply = "Hello! Welcome to KilimoMkononi. How can I help you today? Ask about market prices, crop diseases, fertilizers, or weather.";
+                    // English Dynamic Responses
+                    if (qLower.includes('price') || qLower.includes('market') || qLower.includes('sell') || qLower.includes('cost')) {
+                        reply = `📊 **Market Intelligence:** Regarding *"<strong>${query}</strong>"*, current wholesale prices are stable across East Africa. Maize averages $0.28-$0.32/kg, and Rice averages $0.90-$1.00/kg. You can list your produce directly through our Market module.`;
+                    } else if (qLower.includes('disease') || qLower.includes('pest') || qLower.includes('leaf') || qLower.includes('crop')) {
+                        reply = `🌿 **Agronomy Advisory:** Regarding *"<strong>${query}</strong>"*, this often points to nutrient deficiencies or pest stress. Use our **AI Plant Scanner** tool to take a photo of the affected leaf for precise disease detection and treatment recommendations.`;
                     } else {
-                        reply = "🤖 I'm sorry, I didn't quite catch that. You can ask me about market prices, plant diseases, fertilizers, weather, or agri-loans.";
+                        reply = `🤖 **KilimoMkononi AI Advisor:** I have analyzed your query: *"<strong>${query}</strong>"*. As an integrated smart farming and satellite platform, we recommend combining certified seed selection, precise fertilizer management, and digital traceability to maximize your harvest value and connect with global off-takers.`;
                     }
                 }
 
-                aiMsg.innerText = reply;
+                aiMsg.innerHTML = reply;
                 chatBox.scrollTop = chatBox.scrollHeight;
             }, 1000);
         }
     </script>
 </body>
-</html>
+</htm>
