@@ -1,543 +1,327 @@
 <!DOCTYPE html>
-<html lang="sw">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kilimo Mkononi (AgriPocket) - Global AgTech Platform</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <title>Kilimo Mkononi | AI Agritech Platform</title>
     <style>
-        body { font-family: 'Inter', sans-serif; }
-        .modal { transition: opacity 0.25s ease; }
-        body.modal-active { overflow-x: hidden; overflow-y: hidden; }
+        :root {
+            --primary: #2e7d32;
+            --primary-light: #4caf50;
+            --dark: #1b5e20;
+            --bg: #f4f6f8;
+            --card-bg: #ffffff;
+            --text: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg);
+            color: var(--text);
+        }
+
+        header {
+            background-color: var(--primary);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .logo-title h1 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
+
+        .logo-title p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.9;
+        }
+
+        .lang-toggle {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid white;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: var(--dark);
+            margin-top: 0;
+            border-bottom: 2px solid #e0e0e0;
+            padding-bottom: 0.5rem;
+        }
+
+        .chat-box {
+            background: #fafafa;
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            padding: 1rem;
+            min-height: 180px;
+            max-height: 350px;
+            overflow-y: auto;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            margin-bottom: 0.8rem;
+            padding: 0.8rem 1rem;
+            border-radius: 8px;
+            max-width: 85%;
+            line-height: 1.4;
+        }
+
+        .message.user {
+            background: var(--primary-light);
+            color: white;
+            margin-left: auto;
+        }
+
+        .message.ai {
+            background: #e8f5e9;
+            color: #1b5e20;
+            border: 1px solid #c8e6c9;
+        }
+
+        .input-group {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        input[type="text"] {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+
+        button.btn-send {
+            background: var(--primary);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        button.btn-send:hover {
+            background: var(--dark);
+        }
+
+        .badge-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .badge-item {
+            background: #e8f5e9;
+            padding: 1rem;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #c8e6c9;
+        }
+
+        .badge-item h3 {
+            margin: 0 0 0.5rem 0;
+            color: var(--dark);
+        }
+
+        .badge-item p {
+            margin: 0;
+            font-size: 0.85rem;
+            color: #555;
+        }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body>
 
-    <!-- Header -->
-    <header class="bg-white shadow-sm sticky top-0 z-40 border-b border-gray-100">
-        <nav class="container mx-auto px-4 py-3 flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <span class="text-3xl">🌾</span>
-                <h1 class="text-2xl font-extrabold text-green-700">Kilimo<span class="text-gray-900">Mkononi</span></h1>
-                <span class="text-xs font-bold bg-green-100 text-green-800 px-2.5 py-1 rounded-full">Global Demo v3.0</span>
-            </div>
-            <div class="flex items-center gap-3">
-                <select id="lang-select" class="text-xs border rounded-lg px-2 py-1 bg-gray-50 font-semibold text-gray-700">
-                    <option value="sw">🇹🇿 Kiswahili</option>
-                    <option value="en">🇬🇧 English</option>
-                    <option value="fr">🇫🇷 Français</option>
-                </select>
-                <div class="w-9 h-9 rounded-full bg-green-700 text-white flex items-center justify-center font-bold shadow">A</div>
-            </div>
-        </nav>
+    <header>
+        <div class="logo-title">
+            <h1>Kilimo Mkononi</h1>
+            <p id="sub-title">AI-Powered Agritech Platform</p>
+        </div>
+        <button class="lang-toggle" onclick="toggleLanguage()" id="lang-btn">Switch to Kiswahili</button>
     </header>
 
-    <!-- Hero Section -->
-    <main class="container mx-auto px-4 py-8">
-        
-        <div class="max-w-3xl mx-auto text-center mb-10">
-            <h2 class="text-3xl md:text-5xl font-extrabold text-gray-900 mb-3 leading-tight">
-                Mapinduzi ya Kilimo kwa <span class="text-green-600">AI & Teknolojia ya Satelaiti</span>
-            </h2>
-            <p class="text-gray-600 text-sm md:text-base">
-                Suluhisho la kimataifa linalowaunganisha wakulima na masoko, pembejeo, ushauri wa AI, na ufuatiliaji wa mazao (Farm-to-Table).
-            </p>
-        </div>
-
-        <!-- Grid Cards -->
-        <section class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div class="container">
+        <!-- AI Assistant Section -->
+        <div class="card">
+            <h2 id="ai-title">🤖 AI Farm Advisor (Powered by Gemini)</h2>
+            <p id="ai-desc">Ask any question regarding crop diseases, soil health, weather, or market pricing.</p>
             
-            <!-- 1. Soko la Mazao (Search Feature) -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">🛍️</span>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">Soko la Mazao</h3>
-                        <p class="text-xs text-gray-500">Tafuta Mazao & Bei za Kitaifa</p>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-sm mb-6">Kagua mamia ya mazao nchini, tumia kisanduku cha kutafuta, au uza mazao yako moja kwa moja.</p>
-                <div class="flex gap-2">
-                    <button onclick="openModal('modal-soko')" class="flex-1 bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Tafuta Mazao</button>
-                    <button onclick="openModal('modal-uza')" class="flex-1 bg-green-50 text-green-700 border border-green-200 font-semibold py-2.5 rounded-xl hover:bg-green-100 text-sm transition">Uza Zao</button>
+            <div class="chat-box" id="chat-box">
+                <div class="message ai" id="welcome-msg">
+                    Hello! I am your AI Agronomist. How can I assist your farm today?
                 </div>
             </div>
 
-            <!-- 2. Duka la Pembejeo (Order System) -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">🛒</span>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">Duka la Pembejeo</h3>
-                        <p class="text-xs text-gray-500">Agiza Mbolea, Mbegu & Zana</p>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-sm mb-6">Agiza bidhaa halisi za mbolea na mbegu uletewe mpaka shambani na upate risiti ya muamala.</p>
-                <button onclick="openModal('modal-duka')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Agiza Pembejeo Sasa</button>
+            <div class="input-group">
+                <input type="text" id="user-input" placeholder="Type your farming query here..." onkeypress="handleKeyPress(event)">
+                <button class="btn-send" onclick="sendQuery()" id="send-btn">Ask AI</button>
             </div>
+        </div>
 
-            <!-- 3. Msaidizi wa AI & Voice Chat -->
-            <div class="bg-white p-6 rounded-2xl border-2 border-blue-500 shadow-sm hover:shadow-md transition relative">
-                <span class="absolute -top-3 right-4 bg-blue-600 text-white text-xs px-2.5 py-0.5 rounded-full font-bold">Voice & Text AI</span>
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">🤖</span>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">Msaidizi wa AI</h3>
-                        <p class="text-xs text-gray-500">Ushauri kwa Maandishi au Sauti</p>
-                    </div>
+        <!-- Ecosystem Features -->
+        <div class="card">
+            <h2 id="features-title">🌐 Platform Ecosystem</h2>
+            <div class="badge-grid">
+                <div class="badge-item">
+                    <h3>📱 USSD & IVR</h3>
+                    <p id="feat-1">Zero-rated voice & text access for offline feature phone users.</p>
                 </div>
-                <p class="text-gray-600 text-sm mb-6">Uliza maswali ya magonjwa au tumia sauti kupata majibu ya kitaalamu papo hapo.</p>
-                <button onclick="openModal('modal-ai')" class="w-full bg-blue-600 text-white font-semibold py-2.5 rounded-xl hover:bg-blue-700 text-sm transition">Zungumza na AI</button>
-            </div>
-
-            <!-- 4. Uchunguzi wa Picha (Computer Vision Scan) -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">📸</span>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">AI Plant Scanner</h3>
-                        <p class="text-xs text-gray-500">Uchunguzi wa Magonjwa kwa Picha</p>
-                    </div>
+                <div class="badge-item">
+                    <h3>🌾 Marketplace</h3>
+                    <p id="feat-2">Direct connection between smallholders, input suppliers, and off-takers.</p>
                 </div>
-                <p class="text-gray-600 text-sm mb-6">Piga picha jani la zao lililoshambuliwa ili AI itambue ugonjwa na dawa sahihi.</p>
-                <button onclick="openModal('modal-scan')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Piga Picha Zao</button>
-            </div>
-
-            <!-- 5. Utraceability wa QR Code (Farm-to-Table) -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">🔍</span>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">Ufuatiliaji wa Zao (QR)</h3>
-                        <p class="text-xs text-gray-500">Farm-to-Table Traceability</p>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-sm mb-6">Tengeneza QR Code inayowawezesha wanunuzi wa kimataifa kuona historia ya shamba lako.</p>
-                <button onclick="openModal('modal-qr')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Tengeneza QR Code</button>
-            </div>
-
-            <!-- 6. Utabiri wa Fedha & Credit Score -->
-            <div class="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm hover:shadow-md transition">
-                <div class="flex items-center gap-3 mb-4">
-                    <span class="text-4xl">📈</span>
-                    <div>
-                        <h3 class="text-xl font-bold text-gray-900">Fedha & Credit Score</h3>
-                        <p class="text-xs text-gray-500">Kikokotoo & Mikopo ya Kilimo</p>
-                    </div>
-                </div>
-                <p class="text-gray-600 text-sm mb-6">Changanua faida ya msimu na kagua vigezo vyako vya kupata mkopo wa kilimo.</p>
-                <button onclick="openModal('modal-fedha')" class="w-full bg-green-600 text-white font-semibold py-2.5 rounded-xl hover:bg-green-700 text-sm transition">Kikokotoo & Mtaji</button>
-            </div>
-
-        </section>
-    </main>
-
-    <!-- ==================== MADIRISHA YA NDANI (MODALS) ==================== -->
-
-    <!-- Modal 1: Soko la Mazao na Search Engine -->
-    <div id="modal-soko" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-xl w-full p-6 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-gray-900">📊 Bei za Mazao Sokoni (Real-Time Search)</h3>
-                <button onclick="closeModal('modal-soko')" class="text-gray-400 hover:text-gray-600 font-bold text-xl">✕</button>
-            </div>
-            
-            <!-- Kisanduku cha Search -->
-            <div class="mb-4">
-                <input id="search-mazao" type="text" onkeyup="filterMazao()" placeholder="🔍 Andika jina la zao (mf. Kabichi, Avokado, Kahawa...)" class="w-full p-3 border rounded-xl text-sm focus:ring-2 focus:ring-green-500 outline-none">
-            </div>
-
-            <!-- Orodha ya Mazao -->
-            <div id="orodha-mazao" class="space-y-3">
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Kabichi (Kilo 1)</p>
-                        <p class="text-xs text-gray-500">Soko la Mafinga / Iringa</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 1,200</span>
-                </div>
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Nyanya (Crate 1)</p>
-                        <p class="text-xs text-gray-500">Soko Kuu la Ilala / DSM</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 35,000</span>
-                </div>
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Mahindi (Gunia 100kg)</p>
-                        <p class="text-xs text-gray-500">Soko la Mbeya</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 75,000</span>
-                </div>
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Avokado / Parachichi (Kilo 1)</p>
-                        <p class="text-xs text-gray-500">Soko la Njombe (Export Grade)</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 3,500</span>
-                </div>
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Kahawa Arabica (Kilo 1)</p>
-                        <p class="text-xs text-gray-500">Soko la Moshi / Kilimanjaro</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 8,200</span>
-                </div>
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Vitunguu Swaumu (Kilo 1)</p>
-                        <p class="text-xs text-gray-500">Soko la Singida</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 5,500</span>
-                </div>
-                <div class="zao-item p-3 bg-gray-50 rounded-xl flex justify-between items-center border">
-                    <div>
-                        <p class="font-bold text-gray-800 zao-jina">Pamba (Kilo 1)</p>
-                        <p class="text-xs text-gray-500">Soko la Simiyu</p>
-                    </div>
-                    <span class="text-green-600 font-bold">TSH 2,100</span>
+                <div class="badge-item">
+                    <h3>🌦️ Weather Smart</h3>
+                    <p id="feat-3">Hyper-local climate insights & irrigation planning powered by AI.</p>
                 </div>
             </div>
         </div>
     </div>
 
-    <!-- Modal 2: Duka la Pembejeo + Mfumo Halisi wa Agizo -->
-    <div id="modal-duka" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-lg w-full p-6 max-h-[90vh] overflow-y-auto">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-gray-900">🛒 Duka la Pembejeo Za Kilimo</h3>
-                <button onclick="closeModal('modal-duka')" class="text-gray-400 hover:text-gray-600 font-bold text-xl">✕</button>
-            </div>
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div class="border rounded-xl p-4 text-center bg-gray-50">
-                    <span class="text-4xl">🌱</span>
-                    <h4 class="font-bold text-gray-800 mt-2">Mbolea ya DAP (50kg)</h4>
-                    <p class="text-xs text-gray-500 my-1">Yara Mila - Kanda ya Kusini</p>
-                    <p class="text-green-600 font-bold text-sm">TSH 135,000</p>
-                    <button onclick="funguaFomuYaAgizo('Mbolea ya DAP (50kg)', 135000)" class="mt-3 w-full bg-green-700 text-white font-semibold text-xs py-2 rounded-lg hover:bg-green-800">Agiza Sasa</button>
-                </div>
-                <div class="border rounded-xl p-4 text-center bg-gray-50">
-                    <span class="text-4xl">🥬</span>
-                    <h4 class="font-bold text-gray-800 mt-2">Mbegu ya Kabichi (Gloria)</h4>
-                    <p class="text-xs text-gray-500 my-1">Paketi ya Gramu 100</p>
-                    <p class="text-green-600 font-bold text-sm">TSH 45,000</p>
-                    <button onclick="funguaFomuYaAgizo('Mbegu ya Kabichi (Gloria)', 45000)" class="mt-3 w-full bg-green-700 text-white font-semibold text-xs py-2 rounded-lg hover:bg-green-800">Agiza Sasa</button>
-                </div>
-                <div class="border rounded-xl p-4 text-center bg-gray-50">
-                    <span class="text-4xl">💧</span>
-                    <h4 class="font-bold text-gray-800 mt-2">Drip Irrigation Kit</h4>
-                    <p class="text-xs text-gray-500 my-1">Mfumo wa Umwagiliaji (Ekari 0.5)</p>
-                    <p class="text-green-600 font-bold text-sm">TSH 450,000</p>
-                    <button onclick="funguaFomuYaAgizo('Drip Irrigation Kit', 450000)" class="mt-3 w-full bg-green-700 text-white font-semibold text-xs py-2 rounded-lg hover:bg-green-800">Agiza Sasa</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 2.1: Fomu ya Kukamilisha Oda Ya Pembejeo -->
-    <div id="modal-agiza-fomu" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-gray-900">📦 Kukamilisha Agizo la Bidhaa</h3>
-                <button onclick="closeModal('modal-agiza-fomu')" class="text-gray-400 font-bold">✕</button>
-            </div>
-            <form onsubmit="kamilishaOda(event)" class="space-y-3">
-                <div class="p-3 bg-green-50 rounded-xl border border-green-200">
-                    <p class="text-xs text-gray-600">Bidhaa Inayoagizwa:</p>
-                    <p id="agizo-jina-bidhaa" class="font-bold text-gray-800 text-sm"></p>
-                    <p id="agizo-bei-bidhaa" class="text-xs text-green-700 font-bold"></p>
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Jina la Mteja / Mkulima</label>
-                    <input type="text" value="Amosi Sanga" required class="w-full mt-1 p-2 border rounded-xl text-sm">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Namba ya Simu (Kwa ajili ya M-Pesa / Delivery)</label>
-                    <input type="text" value="0755XXXXXX" required class="w-full mt-1 p-2 border rounded-xl text-sm">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Mkoa & Wilaya Unapopelekewa</label>
-                    <input type="text" value="Mafinga, Iringa" required class="w-full mt-1 p-2 border rounded-xl text-sm">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Njia ya Malipo</label>
-                    <select class="w-full mt-1 p-2 border rounded-xl text-sm bg-white">
-                        <option>📱 M-Pesa / Tigo Pesa / Airtel Money</option>
-                        <option>💳 Bank Card (Visa / Mastercard / Stripe)</option>
-                    </select>
-                </div>
-                <button type="submit" class="w-full bg-green-700 text-white font-bold py-3 rounded-xl hover:bg-green-800 text-sm">Kamilisha Agizo & Lipa</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal 2.2: Risiti Halisi Ya Muamala -->
-    <div id="modal-risiti" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center">
-            <span class="text-5xl text-green-600">✅</span>
-            <h3 class="text-xl font-bold text-gray-900 mt-2">Agizo Lako Limefanikiwa!</h3>
-            <p class="text-xs text-gray-500 mb-4">Risiti ya Kidijitali ya Kilimo Mkononi</p>
-            <div class="bg-gray-50 p-4 rounded-xl text-left border text-xs space-y-2 mb-4">
-                <p><strong>Namba ya Oda:</strong> <span id="risiti-ref"></span></p>
-                <p><strong>Bidhaa:</strong> <span id="risiti-bidhaa"></span></p>
-                <p><strong>Kiasi Kilicholipwa:</strong> <span id="risiti-bei" class="text-green-700 font-bold"></span></p>
-                <p><strong>Hali ya Usafirishaji:</strong> Inamuandalia Mzigo kwa ajili ya Kufikishwa Mafinga</p>
-            </div>
-            <button onclick="closeModal('modal-risiti')" class="w-full bg-gray-900 text-white py-2.5 rounded-xl text-xs font-bold">Funga Risiti</button>
-        </div>
-    </div>
-
-    <!-- Modal 3: AI Assistant + Voice Feature -->
-    <div id="modal-ai" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 flex flex-col h-[500px]">
-            <div class="flex justify-between items-center pb-3 border-b">
-                <div class="flex items-center gap-2">
-                    <span class="text-2xl">🤖</span>
-                    <h3 class="font-bold text-gray-900">AgriPocket AI (Voice Enabled)</h3>
-                </div>
-                <button onclick="closeModal('modal-ai')" class="text-gray-400 font-bold text-xl">✕</button>
-            </div>
-            <div id="chat-box" class="flex-1 my-4 overflow-y-auto space-y-3 text-sm pr-1">
-                <div class="bg-blue-50 p-3 rounded-xl max-w-[85%] text-blue-900">
-                    Habari Amosi! Mimi ni Msaidizi wako wa Kilimo cha Kisasa. Unaweza kuniandikia au kubonyeza kitufe cha Sauti 🎙️ kuongea nami!
-                </div>
-            </div>
-            <form onsubmit="sendChatMessage(event)" class="flex gap-2 border-t pt-3">
-                <button type="button" onclick="recordVoice()" class="bg-red-50 text-red-600 p-2.5 rounded-xl border border-red-200 hover:bg-red-100" title="Ongea kwa Sauti">🎙️</button>
-                <input id="chat-input" type="text" placeholder="Andika swali au ongea..." required class="flex-1 border rounded-xl px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-blue-500">
-                <button type="submit" class="bg-blue-600 text-white text-sm font-bold px-4 py-2 rounded-xl hover:bg-blue-700">Tuma</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- Modal 4: AI Computer Vision Scanner -->
-    <div id="modal-scan" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-gray-900">📸 AI Crop Scanner</h3>
-                <button onclick="closeModal('modal-scan')" class="text-gray-400 font-bold text-xl">✕</button>
-            </div>
-            <div class="border-2 border-dashed border-gray-300 p-8 rounded-2xl bg-gray-50 flex flex-col items-center justify-center mb-4">
-                <span class="text-5xl mb-2">🍃</span>
-                <p class="text-xs text-gray-500">Pakia au Piga picha ya jani la zao lako</p>
-                <button onclick="simulishaScanner()" class="mt-4 bg-green-700 text-white text-xs px-4 py-2 rounded-xl font-bold">Chagua Picha ya Jani</button>
-            </div>
-            <div id="scan-result" class="hidden bg-green-50 p-4 rounded-xl text-left border border-green-200 text-xs space-y-1">
-                <p class="font-bold text-green-900">Matokeo ya AI (Confidence: 98%):</p>
-                <p><strong>Ugonjwa:</strong> Early Blight (Madoa ya Nyanya/Kabichi)</p>
-                <p><strong>Dawa Inayopendekezwa:</strong> Fungicide yenye Mancozeb 80% WP.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal 5: QR Code Traceability -->
-    <div id="modal-qr" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6 text-center">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-gray-900">🔍 Farm-to-Table QR Code</h3>
-                <button onclick="closeModal('modal-qr')" class="text-gray-400 font-bold text-xl">✕</button>
-            </div>
-            <p class="text-xs text-gray-500 mb-4">QR Code hii inatiwa kwenye mifuko ya mazao yako ili wanunuzi wa Ulaya/Asia wa-scan historia ya shamba.</p>
-            <div class="bg-white p-4 inline-block border-2 border-green-600 rounded-2xl shadow-md mb-4">
-                <!-- QR Code Placeholder -->
-                <img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://amossanga600-cpu.github.io/Kilimo-Mkononi-/" alt="QR Code" class="mx-auto">
-            </div>
-            <p class="text-xs font-bold text-green-700">Verified Origin: Mafinga Farm #409</p>
-        </div>
-    </div>
-
-    <!-- Modal 6: Kikokotoo cha Fedha & Credit Score -->
-    <div id="modal-fedha" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-xl font-bold text-gray-900">📈 Utabiri wa Fedha & Credit Scoring</h3>
-                <button onclick="closeModal('modal-fedha')" class="text-gray-400 font-bold text-xl">✕</button>
-            </div>
-            <div class="space-y-3 text-sm">
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Ukubwa wa Eneo (Ekari)</label>
-                    <input id="ekari" type="number" value="1" oninput="calculateProfit()" class="w-full mt-1 p-2 border rounded-xl">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Gharama za Maandalizi & Mbolea (TSH)</label>
-                    <input id="gharama" type="number" value="600000" oninput="calculateProfit()" class="w-full mt-1 p-2 border rounded-xl">
-                </div>
-                <div class="p-3 bg-green-50 rounded-xl border border-green-200 mt-2 text-center">
-                    <p class="text-xs text-gray-600">Makadirio ya Faida Halisi:</p>
-                    <p id="matokeo-faida" class="text-xl font-extrabold text-green-700">TSH 1,800,000</p>
-                </div>
-                <div class="p-3 bg-blue-50 rounded-xl border border-blue-200 text-xs">
-                    <p class="font-bold text-blue-900">AgriPocket Credit Score: <strong>780/800 (Bora)</strong></p>
-                    <p class="text-blue-700 mt-0.5">Unafuzu kupata mkopo wa pembejeo wa TSH 1,500,000 bila dhamana!</p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Scripts za Interaction na Search Engine -->
     <script>
-        function openModal(id) {
-            document.getElementById(id).classList.remove('opacity-0', 'pointer-events-none');
-            document.body.classList.add('modal-active');
-        }
+        let currentLang = 'en';
 
-        function closeModal(id) {
-            document.getElementById(id).classList.add('opacity-0', 'pointer-events-none');
-            document.body.classList.remove('modal-active');
-        }
+        // Gemini API Key Integration
+        const API_KEY = "AQ.Ab8RN6IhctdDQAML4_lBiykAPhNh4ratCmJgyLWUbpPlME-w7Q";
 
-        // Search Engine ya Mazao
-        function filterMazao() {
-            let input = document.getElementById('search-mazao').value.toLowerCase();
-            let items = document.getElementsByClassName('zao-item');
-
-            for (let i = 0; i < items.length; i++) {
-                let name = items[i].querySelector('.zao-jina').innerText.toLowerCase();
-                if (name.includes(input)) {
-                    items[i].style.display = "flex";
-                } else {
-                    items[i].style.display = "none";
-                }
+        const translations = {
+            en: {
+                subTitle: "AI-Powered Agritech Platform",
+                langBtn: "Switch to Kiswahili",
+                aiTitle: "🤖 AI Farm Advisor (Powered by Gemini)",
+                aiDesc: "Ask any question regarding crop diseases, soil health, weather, or market pricing.",
+                welcomeMsg: "Hello! I am your AI Agronomist. How can I assist your farm today?",
+                placeholder: "Type your farming query here...",
+                sendBtn: "Ask AI",
+                featuresTitle: "🌐 Platform Ecosystem",
+                feat1: "Zero-rated voice & text access for offline feature phone users.",
+                feat2: "Direct connection between smallholders, input suppliers, and off-takers.",
+                feat3: "Hyper-local climate insights & irrigation planning powered by AI."
+            },
+            sw: {
+                subTitle: "Mfumo wa AI wa Ushauri wa Kilimo",
+                langBtn: "Switch to English",
+                aiTitle: "🤖 Mshauri wa Kilimo wa AI (Gemini)",
+                aiDesc: "Uliza swali lolote kuhusu magonjwa ya mazao, udongo, hali ya hewa, au masoko.",
+                welcomeMsg: "Hujambo! Mimi ni Mshauri wako wa AI wa Kilimo. Nikusaidie vipi leo?",
+                placeholder: "Andika swali lako la kilimo hapa...",
+                sendBtn: "Uliza AI",
+                featuresTitle: "🌐 Mfumo Wetu wa Huduma",
+                feat1: "Huduma za BURE za USSD na Sauti (IVR) bila intaneti.",
+                feat2: "Soko la moja kwa moja la kuuza mazao na kununua pembejeo.",
+                feat3: "Utabiri wa hali ya hewa na ushauri wa umwagiliaji kwa njia ya AI."
             }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'sw' : 'en';
+            const t = translations[currentLang];
+
+            document.getElementById('sub-title').innerText = t.subTitle;
+            document.getElementById('lang-btn').innerText = t.langBtn;
+            document.getElementById('ai-title').innerText = t.aiTitle;
+            document.getElementById('ai-desc').innerText = t.aiDesc;
+            document.getElementById('welcome-msg').innerText = t.welcomeMsg;
+            document.getElementById('user-input').placeholder = t.placeholder;
+            document.getElementById('send-btn').innerText = t.sendBtn;
+            document.getElementById('features-title').innerText = t.featuresTitle;
+            document.getElementById('feat-1').innerText = t.feat1;
+            document.getElementById('feat-2').innerText = t.feat2;
+            document.getElementById('feat-3').innerText = t.feat3;
         }
 
-        // Order System kwa Pembejeo
-        let bidhaaIliyochaguliwa = "";
-        let beiIliyochaguliwa = 0;
-
-        function funguaFomuYaAgizo(jina, bei) {
-            bidhaaIliyochaguliwa = jina;
-            beiIliyochaguliwa = bei;
-            document.getElementById('agizo-jina-bidhaa').innerText = jina;
-            document.getElementById('agizo-bei-bidhaa').innerText = "TSH " + bei.toLocaleString();
-            closeModal('modal-duka');
-            openModal('modal-agiza-fomu');
+        function handleKeyPress(e) {
+            if (e.key === 'Enter') sendQuery();
         }
 
-        function kamilishaOda(e) {
-            e.preventDefault();
-            closeModal('modal-agiza-fomu');
-            
-            document.getElementById('risiti-ref').innerText = "ORD-" + Math.floor(100000 + Math.random() * 900000);
-            document.getElementById('risiti-bidhaa').innerText = bidhaaIliyochaguliwa;
-            document.getElementById('risiti-bei').innerText = "TSH " + beiIliyochaguliwa.toLocaleString();
-            
-            openModal('modal-risiti');
-        }
+        async function sendQuery() {
+            const inputEl = document.getElementById('user-input');
+            const query = inputEl.value.trim();
+            if (!query) return;
 
-        // AI Chat
-        function sendChatMessage(e) {
-            e.preventDefault();
-            const input = document.getElementById('chat-input');
-            const box = document.getElementById('chat-box');
-            const text = input.value;
+            const chatBox = document.getElementById('chat-box');
 
-            box.innerHTML += `<div class="bg-gray-100 p-3 rounded-xl max-w-[85%] text-gray-800 ml-auto">${text}</div>`;
-            input.value = '';
-            box.scrollTop = box.scrollHeight;
+            // Show User Input
+            const userMsg = document.createElement('div');
+            userMsg.className = 'message user';
+            userMsg.innerText = query;
+            chatBox.appendChild(userMsg);
 
-            setTimeout(() => {
-                box.innerHTML += `<div class="bg-blue-50 p-3 rounded-xl max-w-[85%] text-blue-900">AgriPocket AI: Kwa kanda ya Mafinga, hakikisha unatumia mbolea ya DAP wakati wa kupanda kabichi na UREA siku 21 baada ya kupanda.</div>`;
-                box.scrollTop = box.scrollHeight;
-            }, 800);
-        }
+            inputEl.value = '';
+            chatBox.scrollTop = chatBox.scrollHeight;
 
-        function recordVoice() {
-            alert("🎙️ Kinasa Sauti Kimejiwasha... Ongea swali lako (Mfano: 'Nitokezeje magonjwa ya kabichi?')");
-            document.getElementById('chat-input').value = "Nifanyeje kuzuia magonjwa ya kabichi?";
-        }
+            // Show Pending AI Message
+            const aiMsg = document.createElement('div');
+            aiMsg.className = 'message ai';
+            aiMsg.innerText = currentLang === 'en' ? 'Analyzing with Gemini AI...' : 'Inachakata na Gemini AI...';
+            chatBox.appendChild(aiMsg);
+            chatBox.scrollTop = chatBox.scrollHeight;
 
-        function simulishaScanner() {
-            document.getElementById('scan-result').classList.remove('hidden');
-        }
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: JSON.stringify({
+                        contents: [{
+                            parts: [{
+                                text: `You are an expert agronomist assistant for African smallholder farmers. Answer concisely and helpful in ${currentLang === 'en' ? 'English' : 'Swahili'}: ${query}`
+                            }]
+                        }]
+                    })
+                });
 
-        function calculateProfit() {
-            const ekari = parseFloat(document.getElementById('ekari').value) || 0;
-            const gharama = parseFloat(document.getElementById('gharama').value) || 0;
-            const faida = (ekari * 2400000) - gharama;
-            document.getElementById('matokeo-faida').innerText = 'TSH ' + faida.toLocaleString();
+                const data = await response.json();
+
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    aiMsg.innerText = data.candidates[0].content.parts[0].text;
+                } else {
+                    aiMsg.innerText = currentLang === 'en' ? "Unable to retrieve response. Please check API configuration." : "Imeshindikana kupata jibu. Angalia usajili wa API.";
+                }
+
+            } catch (err) {
+                console.error(err);
+                aiMsg.innerText = currentLang === 'en' ? "Network error. Unable to connect to Gemini AI." : "Hitilafu ya mtandao. Imeshindwa kuunganisha na Gemini AI.";
+            }
+
+            chatBox.scrollTop = chatBox.scrollHeight;
         }
     </script>
-        <!-- ==================== MODAL YA UZA ZAO ==================== -->
-    <div id="modal-uza" class="modal opacity-0 pointer-events-none fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50">
-        <div class="bg-white rounded-2xl max-w-md w-full p-6">
-            <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-bold text-gray-900">🌾 Weka Mazao Yako Sokoni</h3>
-                <button onclick="closeModal('modal-uza')" class="text-gray-400 font-bold text-xl">✕</button>
-            </div>
-            <form onsubmit="ongezaZaoSokoni(event)" class="space-y-3">
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Jina la Zao (mf. Kabichi, Nyanya)</label>
-                    <input id="weka-jina-zao" type="text" placeholder="Ingiza jina la zao" required class="w-full mt-1 p-2.5 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-500">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Eneo / Soko (mf. Mafinga, Iringa)</label>
-                    <input id="weka-eneo-zao" type="text" placeholder="Ingiza eneo lilipo zao" required class="w-full mt-1 p-2.5 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-500">
-                </div>
-                <div>
-                    <label class="text-xs font-bold text-gray-700">Bei kwa Kilo/Tenga (TSH)</label>
-                    <input id="weka-bei-zao" type="number" placeholder="mf. 2000" required class="w-full mt-1 p-2.5 border rounded-xl text-sm outline-none focus:ring-2 focus:ring-green-500">
-                </div>
-                <button type="submit" class="w-full bg-green-700 text-white font-bold py-3 rounded-xl hover:bg-green-800 text-sm transition mt-2">Weka Sokoni Sasa</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- ==================== SCRIPT YA KUONGEZA ZAO ==================== -->
-    <script>
-        function ongezaZaoSokoni(e) {
-            e.preventDefault();
-            const jina = document.getElementById('weka-jina-zao').value;
-            const eneo = document.getElementById('weka-eneo-zao').value;
-            const beiInput = document.getElementById('weka-bei-zao').value;
-            const bei = parseFloat(beiInput).toLocaleString();
-
-            const orodha = document.getElementById('orodha-mazao');
-            if (orodha) {
-                const zaoJipya = `
-                    <div class="zao-item p-3 bg-green-50 rounded-xl flex justify-between items-center border border-green-200">
-                        <div>
-                            <p class="font-bold text-gray-800 zao-jina">${jina}</p>
-                            <p class="text-xs text-gray-500">Soko la ${eneo} (Mpya)</p>
-                        </div>
-                        <span class="text-green-600 font-bold">TSH ${bei}</span>
-                    </div>
-                `;
-                orodha.insertAdjacentHTML('afterbegin', zaoJipya);
-            }
-            closeModal('modal-uza');
-            alert('✅ Zao lako limefungwa na kuwekwa sokoni kufanikiwa!');
-            openModal('modal-soko');
-        }
-    </script><!-- Pakia Google Generative AI Library -->
-<script type="module">
-  import { GoogleGenerativeAI } from "https://esm.run/@google/generative-ai";
-
-  // 1. Weka API Key yako hapa
-  const API_KEY = "WEKA_API_KEY_YAKO_HAPA"; 
-  const genAI = new GoogleGenerativeAI(API_KEY);
-
-  // 2. Weka Mipaka na System Instructions za Kilimo
-  const model = genAI.getGenerativeModel({ 
-    model: "gemini-1.5-flash",
-    systemInstruction: "Wewe ni Mshauri wa Kilimo Mkononi nchini Tanzania. Kazi yako ni kutoa ushauri wa kilimo na afya ya mazao kwa Kiswahili tu. Ukiulizwa mambo yasiyohusu kilimo, kataa kwa heshima."
-  });
-
-  // 3. Function ya Kutuma Swali na Kupata Jibu
-  window.ulizaMshauriAI = async function(swali) {
-    try {
-      const result = await model.generateContent(swali);
-      const jibu = result.response.text();
-      return jibu;
-    } catch (error) {
-      console.error("Hitilafu:", error);
-      return "Samahani, imetokea hitilafu ya kuunganisha na AI.";
-    }
-  };
-</script>
-
-
 </body>
 </html>
